@@ -106,8 +106,7 @@
                     
                     <div class="mb-3">
                         <label for="formFile" class="form-label">Deskripsi</label>
-                        <input type="textarea" class="form-control" name="deskripsi"
-                        style="height: 150px;">
+                        <input type="textarea" class="form-control" name="deskripsi" style="height: 150px;">
                     </div>
                 </div>
             </div>
