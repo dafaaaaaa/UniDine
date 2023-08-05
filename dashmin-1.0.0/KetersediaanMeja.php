@@ -1,9 +1,13 @@
+<?php
+include 'koneksi.php'
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
-    <title>Tambah Meja </title>
+    <title>Ketersedian Meja</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -29,7 +33,6 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
-    <link rel="stylesheet" href="//cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
 </head>
 
 <body>
@@ -47,14 +50,14 @@
         <div class="sidebar pe-4 pb-3">
             <nav class="navbar bg-light navbar-light">
                 <div class="navbar-nav w-100 ">
-                    <a href="index.html" class="nav-item nav-link "><i class="fa fa-bell me-2"></i>Daftar Pesanan</a>
-                    <a href="KetersediaanMeja.html" class="nav-item nav-link "><i class="fa fa-envelope me-2"></i>Ketersedian Meja</a>
-                    <a href="Pesanan.html" class="nav-item nav-link"><i class="fa fa-file-alt me-2"></i>Pesanan</a>
+                    <a href="index.html" class="nav-item nav-link"><i class="fa fa-bell me-2"></i>Daftar Pesanan</a>
+                    <a href="KetersediaanMeja.html" class="nav-item nav-link active"><i class="fa fa-envelope me-2"></i>Ketersedian Meja</a>
+                    <a href="Pesanan.html" class="nav-item nav-link "><i class="fa fa-file-alt me-2"></i>Pesanan</a>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle " data-bs-toggle="dropdown"><i class="fa fa-keyboard me-2"></i>Pengelolaan</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-keyboard me-2"></i>Pengelolaan</a>
                         <div class="dropdown-menu bg-transparent border-0">
-                            <a href="Menu.html" class="dropdown-item ">Menu</a>
-                            <a href="Meja.html" class="dropdown-item Active">Meja</a>
+                            <a href="Menu.html" class="dropdown-item">Menu</a>
+                            <a href="Meja.html" class="dropdown-item">Meja</a>
                         </div>
                     </div>
                     <a href="Login.html" class="nav-item nav-link">Log Out</a>
@@ -62,6 +65,10 @@
             </nav>
         </div>
         <!-- Sidebar End -->
+
+
+
+
 
 
         <!-- Content Start -->
@@ -86,33 +93,37 @@
             <div class="container-fluid mb-4 pt-4 px-4 " >
                 <div class="bg-light rounded-top p-4">
                     <div class="row">                       
-                        <p class="h4">  UniDine - Edit Meja</p>  
+                        <p class="h4">  UniDine - Ketersedian Meja</p>  
                     </div>
                 </div>
             </div>
-           
-            <!-- Table Start -->
-            <div class="col-sm-12 col-xl-6">
-                <div class="bg-light rounded h-100 p-4">
-                    <div class="mb-3">
-                        <label for="formFile" class="form-label">Nama Meja</label>
-                        <input type="text" class="form-control" id="floatingInput">
-                    </div>
-                    
-                    <div class="mb-3">
-                        <label for="formFile" class="form-label">Deskripsi</label>
-                        <textarea class="form-control" placeholder="Deskripsi Meja"
-                            id="floatingTextarea" style="height: 150px;"></textarea>
+            <p class="h4 text-center"> Meja</p> 
+            <div class="row g-4">
+                <?php
+                    $hasil = mysqli_query($koneksi, "SELECT * FROM meja");
+                    while ($h = mysqli_fetch_array($hasil)) {
+                ?> 
+                <div class="col-sm-6 col-xl-3">
+                    <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                        <i class="fa fa-chart-line fa-3x text-primary"></i>
+                        <div class="ms-3">
+                            <p class="mb-2">Meja : <?= $h['no_meja']; ?></p>
+                            <p class="mb-2">Kapasitas : <?= $h['kapasitas']; ?></p>
+                            <h6 class="mb-0">Status : <?= $h['Status']; ?></h6>
+                            <a href="terisi.php?id_meja=<?php echo $h['id_meja']; ?>" class="btn btn-primary m-2" >Terisi</a>
+                            <a href="tersedia.php?id_meja=<?php echo $h['id_meja']; ?>" class="btn btn-primary m-2" >Tersedia</a>  
+                        </div>
                     </div>
                 </div>
+                <?php } ?>
             </div>
-            <a href="#"><button type="button" class="btn btn-primary m-2">Simpan Meja</button></a>
-            <a href="#"><button type="button" class="btn btn-primary m-2">Hapus Meja</button></a> 
-            <a href="Meja.html"><button type="button" class="btn btn-primary m-2">Kembali</button></a>    
-        
+        </div>
+    </div>
 
-            <!-- Table End -->
-            <!-- Footer Start -->
+
+            
+            
+            <!-- Footer start -->
             <div class="container-fluid pt-4 px-4">
                 <div class="bg-light rounded-top p-4">
                     <div class="row ">
@@ -123,6 +134,13 @@
             <!-- Footer End -->
         </div>
         <!-- Content End -->
+
+
+
+
+
+
+
 
 
         <!-- Back to Top -->
@@ -139,12 +157,7 @@
     <script src="lib/tempusdominus/js/moment.min.js"></script>
     <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
-    <script src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-    <script>
-        $(document).ready(function(){
-            $('#myTable').dataTable();
-        });
-        </script>
+
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
 </body>
