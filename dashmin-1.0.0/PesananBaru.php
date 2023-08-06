@@ -128,27 +128,31 @@
                                 </li>
                             </ul>
                             <div class="tab-content" id="pills-tabContent">
-                                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                                <div class="tab-pane fade show active " id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" >
                                 <?php
                                     $hasil = mysqli_query($koneksi, "SELECT * FROM tbl_menu WHERE kategori = 'Makanan' ");
                                     while ($h = mysqli_fetch_array($hasil)) {
                                     ?>
-                                      <div class="card-deck"> 
-                                        <div class="card">
-                                          <img src="img/Nasi.jpeg" alt="...">
-                                          <div class="card-body">
-                                          <h5 class="card-title"><?= $h['nama']; ?></h5>
-                                            <p class="card-text"><?= $h['deks']; ?></p>
-                                            <p class="card-text"><small class="text-muted"><?= $h['harga']; ?></small></p>
-                                            <div class="input-group" style="justify-content: center;">
-                                                <input type="button" value="-" class="button-minus" data-field="quantity">
-                                                <input type="number" step="1" max="" value="0" name="quantity" class="quantity-field">
-                                                <input type="button" value="+" class="button-plus" data-field="quantity">
-                                            </div> 
-                                          </div>
+                                    <div class="row justify-content-md-center">
+                                        <div class="col-md-6 m-auto p-2">
+                                            <div class="card-deck justify-content-center" style="width: 300px;"> 
+                                                <div class="card " style="width:400px">
+                                                    <img src="img/Nasi.jpeg" class="img-fluid rounded mx-auto d-block" width="175" height="175"  alt="...">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title"><?= $h['nama']; ?></h5>
+                                                            <p class="card-text"><?= $h['deks']; ?></p>
+                                                            <p class="card-text"><small class="text-muted"><?= $h['harga']; ?></small></p>
+                                                                <div class="input-group" style="justify-content: center;">
+                                                                    <input type="button" value="-" class="button-minus" data-field="quantity">
+                                                                    <input type="number" step="1" max="" value="0" name="quantity" class="quantity-field">
+                                                                    <input type="button" value="+" class="button-plus" data-field="quantity">
+                                                                </div> 
+                                                        </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <?php } ?>
+                                <?php } ?>
                                 </div>
                                 
                                 <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
