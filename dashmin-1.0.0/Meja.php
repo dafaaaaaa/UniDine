@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Menu</title>
+    <title>Meja</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -47,17 +47,17 @@
         <div class="sidebar pe-4 pb-3">
             <nav class="navbar bg-light navbar-light">
                 <div class="navbar-nav w-100 ">
-                    <a href="index.html" class="nav-item nav-link "><i class="fa fa-bell me-2"></i>Daftar Pesanan</a>
-                    <a href="KetersediaanMeja.html" class="nav-item nav-link "><i class="fa fa-envelope me-2"></i>Ketersedian Meja</a>
-                    <a href="Pesanan.html" class="nav-item nav-link"><i class="fa fa-file-alt me-2"></i>Pesanan</a>
+                    <a href="index.php" class="nav-item nav-link "><i class="fa fa-bell me-2"></i>Daftar Pesanan</a>
+                    <a href="KetersediaanMeja.php" class="nav-item nav-link "><i class="fa fa-envelope me-2"></i>Ketersedian Meja</a>
+                    <a href="Pesanan.php" class="nav-item nav-link"><i class="fa fa-file-alt me-2"></i>Pesanan</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-keyboard me-2"></i>Pengelolaan</a>
                         <div class="dropdown-menu bg-transparent border-0">
-                            <a href="Menu.html" class="dropdown-item Active">Menu</a>
-                            <a href="Meja.html" class="dropdown-item">Meja</a>
+                            <a href="Menu.php" class="dropdown-item ">Menu</a>
+                            <a href="Meja.php" class="dropdown-item ">Meja</a>
                         </div>
                     </div>
-                    <a href="Login.html" class="nav-item nav-link">Log Out</a>
+                    <a href="Login.php" class="nav-item nav-link">Log Out</a>
                 </div>
             </nav>
         </div>
@@ -77,7 +77,7 @@
                             <span class="d-none d-lg-inline-flex">User</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-                            <a href="Login.html" class="dropdown-item">Log Out</a>
+                            <a href="Login.php" class="dropdown-item">Log Out</a>
                         </div>
                     </div>
                 </div>
@@ -86,44 +86,40 @@
             <div class="container-fluid mb-4 pt-4 px-4 " >
                 <div class="bg-light rounded-top p-4">
                     <div class="row">                       
-                        <p class="h4">  UniDine - Daftar Menu</p>  
+                        <p class="h4">  UniDine - List Meja</p>  
                     </div>
                 </div>
             </div>
-            <a href="TambahMenu.html"><button type="button" class="btn btn-primary m-2">Edit Menu</button></a>
+            <a href="TambahMeja.php"><button type="button" class="btn btn-primary m-2">Edit Meja</button></a>
             <!-- Table Start -->
             <table id="myTable" class="table table-striped table-bordered table-responsive table-hover" >  
                 <thead>  
                   <tr>  
-                    <th>Pesanan</th>  
-                    <th>Kategori</th>  
-                    <th>Deskripsi</th>
-                    <th>Harga</th>
-                    <th>Total Transaksi</th>
+                    <th>Meja</th>  
+                    <th>Deskripsi</th>  
+                    <th>Status</th>
+                    <th>Hapus</th 
                   </tr>  
                 </thead>  
                 <tbody>  
                   <tr>  
-                    <td>Nasi Goreng</td>  
-                    <td>Makanan</td>  
-                    <td>Goreng</td>  
-                    <td>Rp. 10.000</td>
-                    <td>15</td>
+                    <td>A1</td>  
+                    <td>Deket Jendela</td>  
+                    <td>Ada</td>  
+                    <th><a href="#"><button type="button" class="btn btn-primary m-1">Hapus</button></a></th
                   </tr>  
                   <tr>  
-                    <td>Jus Apel</td>  
-                    <td>Minuman</td>  
-                    <td>Apel</td>  
-                    <td>Rp. 5.000</td>
-                    <td>423</td>
-                  </tr>
+                    <td>A1</td>  
+                    <td>Deket Jendela</td>  
+                    <td>Ada</td>  
+                    <th><a href="#"><button type="button" class="btn btn-primary m-1">Hapus</button></a></th
+                  </tr> 
                   <tr>  
-                    <td>Kentang Goreng</td>  
-                    <td>Cemilan</td>  
-                    <td>Goreng</td>  
-                    <td>Rp. 7.000</td>
-                    <td>15</td>
-                  </tr>       
+                    <td>A1</td>  
+                    <td>Deket Jendela</td>  
+                    <td>Ada</td>  
+                    <th><a href="#"><button type="button" class="btn btn-primary m-1">Hapus</button></a></th
+                  </tr>      
                 </tbody>  
               </table>  
 

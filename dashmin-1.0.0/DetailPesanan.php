@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Daftar Pesanan</title>
+    <title>Detail Pesanan</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -29,7 +29,6 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
-    <link rel="stylesheet" href="//cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
 </head>
 
 <body>
@@ -47,21 +46,25 @@
         <div class="sidebar pe-4 pb-3">
             <nav class="navbar bg-light navbar-light">
                 <div class="navbar-nav w-100 ">
-                    <a href="index.html" class="nav-item nav-link active"><i class="fa fa-bell me-2"></i>Daftar Pesanan</a>
-                    <a href="KetersediaanMeja.html" class="nav-item nav-link "><i class="fa fa-envelope me-2"></i>Ketersedian Meja</a>
-                    <a href="Pesanan.html" class="nav-item nav-link"><i class="fa fa-file-alt me-2"></i>Pesanan</a>
+                    <a href="index.php" class="nav-item nav-link"><i class="fa fa-bell me-2"></i>Daftar Pesanan</a>
+                    <a href="KetersediaanMeja.php" class="nav-item nav-link "><i class="fa fa-envelope me-2"></i>Ketersedian Meja</a>
+                    <a href="Pesanan.php" class="nav-item nav-link active"><i class="fa fa-file-alt me-2"></i>Pesanan</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-keyboard me-2"></i>Pengelolaan</a>
                         <div class="dropdown-menu bg-transparent border-0">
-                          <a href="Menu.html" class="dropdown-item">Menu</a>
-                          <a href="Meja.html" class="dropdown-item">Meja</a>
+                            <a href="Menu.php" class="dropdown-item ">Menu</a>
+                            <a href="Meja.php" class="dropdown-item ">Meja</a>
                         </div>
                     </div>
-                    <a href="Login.html" class="nav-item nav-link">Log Out</a>
+                    <a href="Login.php" class="nav-item nav-link">Log Out</a>
                 </div>
             </nav>
         </div>
         <!-- Sidebar End -->
+
+
+
+
 
 
         <!-- Content Start -->
@@ -77,7 +80,7 @@
                             <span class="d-none d-lg-inline-flex">User</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-                            <a href="Login.html" class="dropdown-item">Log Out</a>
+                            <a href="Login.php" class="dropdown-item">Log Out</a>
                         </div>
                     </div>
                 </div>
@@ -86,76 +89,99 @@
             <div class="container-fluid mb-4 pt-4 px-4 " >
                 <div class="bg-light rounded-top p-4">
                     <div class="row">                       
-                        <p class="h4">  UniDine - Daftar Pesanan</p>  
+                        <p class="h4">  UniDine - Pesanan Baru</p>  
                     </div>
                 </div>
             </div>
-            <!-- Table Start -->
-            <table id="myTable" class="table table-striped table-bordered table-responsive table-hover" >  
-                <thead>  
-                  <tr>  
-                    <th>Pesanan</th>  
-                    <th>Meja</th>  
-                    <th>Tamu</th>
-                    <th>Status Pembayaran</th>
-                    <th>Aksi</th>  
-                  </tr>  
-                </thead>  
-                <tbody>  
-                  <tr>  
-                    <td>Nasi Goreng</td>  
-                    <td>1</td>  
-                    <td>A1</td>  
-                    <td>active</td>
-                    <td><select class="form-select form-select-sm mb-3" aria-label=".form-select-sm example">
-                      <option selected>Aksi</option>
-                      <option value="1">Update Pesanan</option>
-                      <option value="2">Bayar</option>
-                      <option value="3">Batalkan Pesanan</option>
-                      </select></td>  
-                  </tr>  
-                  <tr>  
-                    <td>Nasi Goreng</td>  
-                    <td>1</td>  
-                    <td>A1</td>  
-                    <td>active</td>
-                    <td><select class="form-select form-select-sm mb-3" aria-label=".form-select-sm example">
-                      <option selected>Aksi</option>
-                      <option value="1">Update Pesanan</option>
-                      <option value="2">Bayar</option>
-                      <option value="3">Batalkan Pesanan</option>
-                      </select></td>  
-                  </tr>   
-                  <tr>  
-                    <td>Nasi Goreng</td>  
-                    <td>1</td>  
-                    <td>A1</td>  
-                    <td>active</td>
-                    <td><select class="form-select form-select-sm mb-3" aria-label=".form-select-sm example">
-                      <option selected>Aksi</option>
-                      <option value="1">Update Pesanan</option>
-                      <option value="2">Bayar</option>
-                      <option value="3">Batalkan Pesanan</option>
-                      </select></td>  
-                  </tr>    
-                </tbody>  
-              </table>  
-              <a href="#"><button type="button" class="btn btn-primary m-2">Print</button></a>
+            
+            <div class="container-fluid pt-4 px-4 text-align: left;">
+                <div class="row g-4">
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="bg-light rounded p-4">
+                            <div class="d-flex justify-content-between mb-4">
+                                <h6 class="mb-0">Data Pesanan</h6>   
+                            </div>
+                            <p>No Invoice	: 08-04-2023-8IJK</p>
+                            <p>Pelanggan	: Cash (Pelanggan default)</p>
+                            <p>Tipe Pesanan	: Makan di tempat (Dine in)</p>
+                            <p>Jumlah Tamu	: 1</p>
+                            <p>No Meja	    : dqww</p>
+                            <p>Waktu Masuk	: 2023-08-04 03:45:12</p>
+                          
+                              
+                            <p class="h6">Item Pesanan</p>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Item</th>
+                                        <th scope="col">Qt</th>
+                                        <th scope="col">Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>Teh Manis</td>
+                                        <td>1</td>
+                                        <td>Rp. 7.0000</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">2</th>
+                                        <td>Teh Manis</td>
+                                        <td>1</td>
+                                        <td>Rp. 7.0000</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>Teh Manis</td>
+                                        <td>1</td>
+                                        <td>Rp. 7.0000</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>   
+                    </div>
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="bg-light rounded p-4">
+                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                <h6 class="mb-0">Detail Harga</h6>
+                            </div>
+                            <p>Harga Pesanan: Rp. 7.000</p>
+                            <p>Tunai	    : Rp. 10.000</p>
+                            <p>Kembali	    : Rp. 3.000</p>
+                            <a href="DetailPesanan.php"><button type="button" class="btn btn-primary m-2">Proses Pembayaran</button></a>
+                            <a href="PesananBaru.php"><button type="button" class="btn btn-primary m-2">Bayar Nanti Dan Kembali</button></a>  
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            
 
-            <!-- Table End -->
-            <!-- Footer Start -->
+            
+    
+
+            
+            
+            <!-- Footer start -->
             <div class="container-fluid pt-4 px-4">
                 <div class="bg-light rounded-top p-4">
                     <div class="row ">
                         <p class="h4 text-center">UniDine</p>
                     </div>
-                    
                 </div>
             </div>
-            
             <!-- Footer End -->
         </div>
         <!-- Content End -->
+
+
+
+
+
+
+
 
 
         <!-- Back to Top -->
@@ -172,12 +198,7 @@
     <script src="lib/tempusdominus/js/moment.min.js"></script>
     <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
-    <script src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-    <script>
-        $(document).ready(function(){
-            $('#myTable').dataTable();
-        });
-        </script>
+
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
 </body>

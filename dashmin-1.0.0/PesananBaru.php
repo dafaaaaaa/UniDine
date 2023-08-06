@@ -52,17 +52,17 @@
         <div class="sidebar pe-4 pb-3">
           <nav class="navbar bg-light navbar-light">
               <div class="navbar-nav w-100 ">
-                  <a href="index.html" class="nav-item nav-link"><i class="fa fa-bell me-2"></i>Daftar Pesanan</a>
-                  <a href="KetersediaanMeja.html" class="nav-item nav-link "><i class="fa fa-envelope me-2"></i>Ketersedian Meja</a>
-                  <a href="Pesanan.html" class="nav-item nav-link active"><i class="fa fa-file-alt me-2"></i>Pesanan</a>
+                  <a href="index.php" class="nav-item nav-link"><i class="fa fa-bell me-2"></i>Daftar Pesanan</a>
+                  <a href="KetersediaanMeja.php" class="nav-item nav-link "><i class="fa fa-envelope me-2"></i>Ketersedian Meja</a>
+                  <a href="Pesanan.php" class="nav-item nav-link active"><i class="fa fa-file-alt me-2"></i>Pesanan</a>
                   <div class="nav-item dropdown">
                       <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-keyboard me-2"></i>Pengelolaan</a>
                       <div class="dropdown-menu bg-transparent border-0">
-                        <a href="Menu.html" class="dropdown-item">Menu</a>
-                        <a href="Meja.html" class="dropdown-item">Meja</a>
+                        <a href="Menu.php" class="dropdown-item">Menu</a>
+                        <a href="Meja.php" class="dropdown-item">Meja</a>
                       </div>
                   </div>
-                  <a href="Login.html" class="nav-item nav-link">Log Out</a>
+                  <a href="Login.php" class="nav-item nav-link">Log Out</a>
               </div>
           </nav>
       </div>
@@ -86,7 +86,7 @@
                             <span class="d-none d-lg-inline-flex">User</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-                          <a href="Login.html" class="dropdown-item">Log Out</a>
+                          <a href="Login.php" class="dropdown-item">Log Out</a>
                         </div>
                     </div>
                 </div>
@@ -371,8 +371,8 @@
                             <p>Nama Pelanggan	: Cash (Pelanggan default)</p>
                             <p>Jumlah Tamu	: 1</p>
                             <p>Meja	: dqww  </p>
-                            <a href="DetailPesanan.html"><button type="button" class="btn btn-primary m-2">Proses Pesanan</button></a>
-                            <a href="Pesanan.html"><button type="button" class="btn btn-primary m-2">Batal</button></a>    
+                            <a href="DetailPesanan.php"><button type="button" class="btn btn-primary m-2">Proses Pesanan</button></a>
+                            <a href="Pesanan.php"><button type="button" class="btn btn-primary m-2">Batal</button></a>    
                         </div>
                         
                     </div>
