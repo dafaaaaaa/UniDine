@@ -51,13 +51,13 @@ include 'koneksi.php'
             <nav class="navbar bg-light navbar-light">
                 <div class="navbar-nav w-100 ">
                     <a href="index.php" class="nav-item nav-link"><i class="fa fa-bell me-2"></i>Daftar Pesanan</a>
-                    <a href="KetersediaanMeja.php" class="nav-item nav-link active"><i class="fa fa-envelope me-2"></i>Ketersedian Meja</a>
-                    <a href="Pesanan.php" class="nav-item nav-link "><i class="fa fa-file-alt me-2"></i>Pesanan</a>
+                    <a href="KetersediaanMeja.php" class="nav-item nav-link "><i class="fa fa-envelope me-2"></i>Ketersedian Meja</a>
+                    <a href="Pesanan.php" class="nav-item nav-link active"><i class="fa fa-file-alt me-2"></i>Pesanan</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-keyboard me-2"></i>Pengelolaan</a>
                         <div class="dropdown-menu bg-transparent border-0">
-                            <a href="Menu.php" class="dropdown-item">Menu</a>
-                            <a href="Meja.php" class="dropdown-item">Meja</a>
+                            <a href="Menu.php" class="dropdown-item ">Menu</a>
+                            <a href="Meja.php" class="dropdown-item ">Meja</a>
                         </div>
                     </div>
                     <a href="Login.php" class="nav-item nav-link">Log Out</a>
@@ -65,10 +65,6 @@ include 'koneksi.php'
             </nav>
         </div>
         <!-- Sidebar End -->
-
-
-
-
 
 
         <!-- Content Start -->

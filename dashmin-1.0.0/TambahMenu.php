@@ -90,42 +90,45 @@
                     </div>
                 </div>
             </div>
-           
+            <form method="post" action="insert_menu.php" enctype="multipart/form-data">
             <!-- Table Start -->
             <div class="col-sm-12 col-xl-6">
                 <div class="bg-light rounded h-100 p-4">
                     <div class="mb-3">
-                        <label for="formFile" class="form-label">Nama Menu</label>
-                        <input type="text" class="form-control" id="floatingInput">
+                        <label for="formFile" class="form-label">Kode Menu</label>
+                        <input type="text" name="kd_menu" class="form-control" id="floatingI   nput">
                     </div>
                     <div class="mb-3">
-                        <label for="formFile" class="form-label">Kategori</label>
-                        <select class="form-select" id="floatingSelect"
-                            aria-label="Floating label select example">
-                            <option selected>Makanan</option>
-                            <option value="1">Minuman</option>
-                            <option value="2">Cemilan</option>
-                        </select>
+                        <label for="formFile" class="form-label">Nama Menu</label>
+                        <input type="text" name="nama" class="form-control" id="floatingInput">
                     </div>
                     <div class="mb-3">
                         <label for="formFile" class="form-label">Deskripsi</label>
-                        <textarea class="form-control" placeholder="Deskripsi Menu"
-                            id="floatingTextarea" style="height: 150px;"></textarea>
+                        <input type="textarea" class="form-control" name="deks" style="height: 150px;">
+                    </div>
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label">Kategori</label>
+                        <select name="kategori" class="form-select" id="floatingSelect"
+                            aria-label="Floating label select example">
+                            <option value="Makanan">Makanan</option>
+                            <option value="Minuman">Minuman</option>
+                            <option value="Cemilan">Cemilan</option>
+                        </select>
                     </div>
                     <div class="mb-3">
                         <label for="formFile" class="form-label">Harga</label>
-                        <input type="number" form-control" id="floatingInput">
+                        <input type="number" name="harga" calss="form-control" id="floatingInput">
                     </div>
                     <div class="mb-3">
                         <label for="formFile" class="form-label">Foto</label>
-                        <input class="form-control" type="file" id="formFile">
+                        <input class="form-control" name="pic" type="file" id="formFile">
                     </div>
                 </div>
             </div>
-            <a href="#"><button type="button" class="btn btn-primary m-2">Simpan Menu </button></a>
-            <a href="#"><button type="button" class="btn btn-primary m-2">Hapus Menu</button></a> 
+            <button type="submit" name="btn_simpan" class="btn btn-primary m-2">Simpan Menu </button></a>
+            <button type="reset" class="btn btn-primary m-2">Hapus Menu</button></a> 
             <a href="Menu.php"><button type="button" class="btn btn-primary m-2">Kembali</button></a>    
-        
+            </form>
 
             <!-- Table End -->
             <!-- Footer Start -->

@@ -1,3 +1,5 @@
+<?php include 'koneksi.php' ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -50,22 +52,22 @@
 
         <!-- Sidebar Start -->
         <div class="sidebar pe-4 pb-3">
-          <nav class="navbar bg-light navbar-light">
-              <div class="navbar-nav w-100 ">
-                  <a href="index.php" class="nav-item nav-link"><i class="fa fa-bell me-2"></i>Daftar Pesanan</a>
-                  <a href="KetersediaanMeja.php" class="nav-item nav-link "><i class="fa fa-envelope me-2"></i>Ketersedian Meja</a>
-                  <a href="Pesanan.php" class="nav-item nav-link active"><i class="fa fa-file-alt me-2"></i>Pesanan</a>
-                  <div class="nav-item dropdown">
-                      <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-keyboard me-2"></i>Pengelolaan</a>
-                      <div class="dropdown-menu bg-transparent border-0">
-                        <a href="Menu.php" class="dropdown-item">Menu</a>
-                        <a href="Meja.php" class="dropdown-item">Meja</a>
-                      </div>
-                  </div>
-                  <a href="Login.php" class="nav-item nav-link">Log Out</a>
-              </div>
-          </nav>
-      </div>
+            <nav class="navbar bg-light navbar-light">
+                <div class="navbar-nav w-100 ">
+                    <a href="index.php" class="nav-item nav-link"><i class="fa fa-bell me-2"></i>Daftar Pesanan</a>
+                    <a href="KetersediaanMeja.php" class="nav-item nav-link "><i class="fa fa-envelope me-2"></i>Ketersedian Meja</a>
+                    <a href="Pesanan.php" class="nav-item nav-link active"><i class="fa fa-file-alt me-2"></i>Pesanan</a>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-keyboard me-2"></i>Pengelolaan</a>
+                        <div class="dropdown-menu bg-transparent border-0">
+                            <a href="Menu.php" class="dropdown-item ">Menu</a>
+                            <a href="Meja.php" class="dropdown-item ">Meja</a>
+                        </div>
+                    </div>
+                    <a href="Login.php" class="nav-item nav-link">Log Out</a>
+                </div>
+            </nav>
+        </div>
         <!-- Sidebar End -->
 
 
@@ -86,7 +88,7 @@
                             <span class="d-none d-lg-inline-flex">User</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-                          <a href="Login.php" class="dropdown-item">Log Out</a>
+                            <a href="Login.php" class="dropdown-item">Log Out</a>
                         </div>
                     </div>
                 </div>
@@ -127,13 +129,17 @@
                             </ul>
                             <div class="tab-content" id="pills-tabContent">
                                 <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-                                    <div class="card-deck">
+                                <?php
+                                    $hasil = mysqli_query($koneksi, "SELECT * FROM tbl_menu WHERE kategori = 'Makanan' ");
+                                    while ($h = mysqli_fetch_array($hasil)) {
+                                    ?>
+                                      <div class="card-deck"> 
                                         <div class="card">
                                           <img src="img/Nasi.jpeg" alt="...">
                                           <div class="card-body">
-                                            <h5 class="card-title">Nasi Goreng Biasa</h5>
-                                            <p class="card-text">Biasa</p>
-                                            <p class="card-text"><small class="text-muted">Rp.10.000</small></p>
+                                          <h5 class="card-title"><?= $h['nama']; ?></h5>
+                                            <p class="card-text"><?= $h['deks']; ?></p>
+                                            <p class="card-text"><small class="text-muted"><?= $h['harga']; ?></small></p>
                                             <div class="input-group" style="justify-content: center;">
                                                 <input type="button" value="-" class="button-minus" data-field="quantity">
                                                 <input type="number" step="1" max="" value="0" name="quantity" class="quantity-field">
@@ -141,164 +147,36 @@
                                             </div> 
                                           </div>
                                         </div>
-                                        <div class="card">
-                                          <img src="img/Nasi.jpeg" class="card-img-top" alt="...">
-                                          <div class="card-body">
-                                            <h5 class="card-title">Nasi Goreng Telor</h5>
-                                            <p class="card-text">Telor</p>
-                                            <p class="card-text"><small class="text-muted">Rp.10.000 </small></p>
-                                            <div class="input-group" style="justify-content: center;">
-                                                <input type="button" value="-" class="button-minus" data-field="quantity">
-                                                <input type="number" step="1" max="" value="0" name="quantity" class="quantity-field">
-                                                <input type="button" value="+" class="button-plus" data-field="quantity">
-                                            </div>
-                                          </div>
-                                        </div>
                                     </div>
-                                    <div class="card-deck">
-                                        <div class="card">
-                                          <img src="img/Nasi.jpeg" alt="...">
-                                          <div class="card-body">
-                                            <h5 class="card-title">Nasi Goreng Biasa</h5>
-                                            <p class="card-text">Biasa</p>
-                                            <p class="card-text"><small class="text-muted">Rp.10.000</small></p>
-                                            <div class="input-group" style="justify-content: center;">
-                                                <input type="button" value="-" class="button-minus" data-field="quantity">
-                                                <input type="number" step="1" max="" value="0" name="quantity" class="quantity-field">
-                                                <input type="button" value="+" class="button-plus" data-field="quantity">
-                                            </div> 
-                                          </div>
-                                        </div>
-                                        <div class="card">
-                                          <img src="img/Nasi.jpeg" class="card-img-top" alt="...">
-                                          <div class="card-body">
-                                            <h5 class="card-title">Nasi Goreng Telor</h5>
-                                            <p class="card-text">Telor</p>
-                                            <p class="card-text"><small class="text-muted">Rp.10.000 </small></p>
-                                            <div class="input-group" style="justify-content: center;">
-                                                <input type="button" value="-" class="button-minus" data-field="quantity">
-                                                <input type="number" step="1" max="" value="0" name="quantity" class="quantity-field">
-                                                <input type="button" value="+" class="button-plus" data-field="quantity">
-                                            </div>
-                                          </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-deck">
-                                        <div class="card">
-                                          <img src="img/Nasi.jpeg" alt="...">
-                                          <div class="card-body">
-                                            <h5 class="card-title">Nasi Goreng Biasa</h5>
-                                            <p class="card-text">Biasa</p>
-                                            <p class="card-text"><small class="text-muted">Rp.10.000</small></p>
-                                            <div class="input-group" style="justify-content: center;">
-                                                <input type="button" value="-" class="button-minus" data-field="quantity">
-                                                <input type="number" step="1" max="" value="0" name="quantity" class="quantity-field">
-                                                <input type="button" value="+" class="button-plus" data-field="quantity">
-                                            </div> 
-                                          </div>
-                                        </div>
-                                        <div class="card">
-                                          <img src="img/Nasi.jpeg" class="card-img-top" alt="...">
-                                          <div class="card-body">
-                                            <h5 class="card-title">Nasi Goreng Telor</h5>
-                                            <p class="card-text">Telor</p>
-                                            <p class="card-text"><small class="text-muted">Rp.10.000 </small></p>
-                                            <div class="input-group" style="justify-content: center;">
-                                                <input type="button" value="-" class="button-minus" data-field="quantity">
-                                                <input type="number" step="1" max="" value="0" name="quantity" class="quantity-field">
-                                                <input type="button" value="+" class="button-plus" data-field="quantity">
-                                            </div>
-                                          </div>
-                                        </div>
-                                    </div>
+                                    <?php } ?>
                                 </div>
                                 
                                 <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                                    <div class="card-deck">
-                                        <div class="card">
-                                          <img src="img/Jus.jpeg" alt="...">
-                                          <div class="card-body">
-                                            <h5 class="card-title">Jus Apel</h5>
-                                            <p class="card-text">Apel</p>
-                                            <p class="card-text"><small class="text-muted">Rp.15.000</small></p>
+                                <?php
+                                // Define your base URL here
+                                $base_url = "http://example.com/"; // Replace this with your actual base URL
+
+                                $hasil = mysqli_query($koneksi, "SELECT * FROM tbl_menu WHERE kategori = 'Minuman'");
+                                while ($h = mysqli_fetch_array($hasil)) {
+                                ?>
+                                <div class="card-deck"> 
+                                    <div class="card">
+                                        <img src="<?= $base_url . 'img/' . $h['pic']; ?>" alt="<?= $h['nama']; ?>">
+                                        <div class="card-body">
+                                            <h5 class="card-title"><?= $h['nama']; ?></h5>
+                                            <p class="card-text"><?= $h['deks']; ?></p>
+                                            <p class="card-text"><small class="text-muted"><?= $h['harga']; ?></small></p>
                                             <div class="input-group" style="justify-content: center;">
                                                 <input type="button" value="-" class="button-minus" data-field="quantity">
                                                 <input type="number" step="1" max="" value="0" name="quantity" class="quantity-field">
                                                 <input type="button" value="+" class="button-plus" data-field="quantity">
                                             </div> 
-                                          </div>
                                         </div>
-                                        <div class="card">
-                                          <img src="img/Jus.jpeg" class="card-img-top" alt="...">
-                                          <div class="card-body">
-                                            <h5 class="card-title">Jus Jeruk</h5>
-                                            <p class="card-text">Jeruk</p>
-                                            <p class="card-text"><small class="text-muted">Rp.40.000 </small></p>
-                                            <div class="input-group" style="justify-content: center;">
-                                                <input type="button" value="-" class="button-minus" data-field="quantity">
-                                                <input type="number" step="1" max="" value="0" name="quantity" class="quantity-field">
-                                                <input type="button" value="+" class="button-plus" data-field="quantity">
-                                            </div>
-                                          </div>
-                                        </div>  
-                                    </div>
-                                    <div class="card-deck">
-                                        <div class="card">
-                                          <img src="img/Jus.jpeg" alt="...">
-                                          <div class="card-body">
-                                            <h5 class="card-title">Jus Apel</h5>
-                                            <p class="card-text">Apel</p>
-                                            <p class="card-text"><small class="text-muted">Rp.15.000</small></p>
-                                            <div class="input-group" style="justify-content: center;">
-                                                <input type="button" value="-" class="button-minus" data-field="quantity">
-                                                <input type="number" step="1" max="" value="0" name="quantity" class="quantity-field">
-                                                <input type="button" value="+" class="button-plus" data-field="quantity">
-                                            </div> 
-                                          </div>
-                                        </div>
-                                        <div class="card">
-                                          <img src="img/Jus.jpeg" class="card-img-top" alt="...">
-                                          <div class="card-body">
-                                            <h5 class="card-title">Jus Jeruk</h5>
-                                            <p class="card-text">Jeruk</p>
-                                            <p class="card-text"><small class="text-muted">Rp.40.000 </small></p>
-                                            <div class="input-group" style="justify-content: center;">
-                                                <input type="button" value="-" class="button-minus" data-field="quantity">
-                                                <input type="number" step="1" max="" value="0" name="quantity" class="quantity-field">
-                                                <input type="button" value="+" class="button-plus" data-field="quantity">
-                                            </div>
-                                          </div>
-                                        </div>  
-                                    </div>
-                                    <div class="card-deck">
-                                        <div class="card">
-                                          <img src="img/Jus.jpeg" alt="...">
-                                          <div class="card-body">
-                                            <h5 class="card-title">Jus Apel</h5>
-                                            <p class="card-text">Apel</p>
-                                            <p class="card-text"><small class="text-muted">Rp.15.000</small></p>
-                                            <div class="input-group" style="justify-content: center;">
-                                                <input type="button" value="-" class="button-minus" data-field="quantity">
-                                                <input type="number" step="1" max="" value="0" name="quantity" class="quantity-field">
-                                                <input type="button" value="+" class="button-plus" data-field="quantity">
-                                            </div> 
-                                          </div>
-                                        </div>
-                                        <div class="card">
-                                          <img src="img/Jus.jpeg" class="card-img-top" alt="...">
-                                          <div class="card-body">
-                                            <h5 class="card-title">Jus Jeruk</h5>
-                                            <p class="card-text">Jeruk</p>
-                                            <p class="card-text"><small class="text-muted">Rp.40.000 </small></p>
-                                            <div class="input-group" style="justify-content: center;">
-                                                <input type="button" value="-" class="button-minus" data-field="quantity">
-                                                <input type="number" step="1" max="" value="0" name="quantity" class="quantity-field">
-                                                <input type="button" value="+" class="button-plus" data-field="quantity">
-                                            </div>
-                                          </div>
-                                        </div>  
                                     </div>
                                 </div>
+                                <?php } ?>
+                                </div>
+
                                 <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
                                     <div class="card-deck">
                                         <div class="card">

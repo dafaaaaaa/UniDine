@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 06, 2023 at 01:21 PM
+-- Generation Time: Aug 06, 2023 at 04:29 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.0.19
 
@@ -90,12 +90,20 @@ CREATE TABLE `tbl_menu` (
   `nama` varchar(200) NOT NULL,
   `deks` text NOT NULL,
   `kategori` varchar(50) NOT NULL,
-  `satuan` varchar(50) NOT NULL,
   `harga` int(20) NOT NULL,
-  `pic` varchar(200) NOT NULL,
-  `total_dipesan` int(7) NOT NULL,
-  `aktif` varchar(1) NOT NULL
+  `pic` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_menu`
+--
+
+INSERT INTO `tbl_menu` (`id`, `kd_menu`, `nama`, `deks`, `kategori`, `harga`, `pic`) VALUES
+(1, 'MA01', 'Nasi Goreng', 'Cabe Ijo', 'Makanan', 20000, 'Nasi.jpeg'),
+(2, 'MA02', 'Mie Kocok', 'Mie Kocok Bandung', 'Makanan', 15000, 'Kentang.jpeg'),
+(3, 'MA03', 'Bakso', 'Bakso Malang', 'Makanan', 15000, ''),
+(4, 'MI01', 'Es Jeruk', 'Es Jeruk Purut', 'Minuman', 10000, ''),
+(5, 'MI02', 'Es Teh', 'Teh manis dingin', 'Minuman', 8000, 'img/esteh.jpg');
 
 -- --------------------------------------------------------
 
@@ -130,6 +138,12 @@ ALTER TABLE `meja`
   ADD PRIMARY KEY (`id_meja`);
 
 --
+-- Indexes for table `tbl_menu`
+--
+ALTER TABLE `tbl_menu`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -144,6 +158,12 @@ ALTER TABLE `login`
 --
 ALTER TABLE `meja`
   MODIFY `id_meja` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `tbl_menu`
+--
+ALTER TABLE `tbl_menu`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
