@@ -106,8 +106,8 @@ include 'koneksi.php'
                                 <p class="mb-2">Meja : <?= $h['no_meja']; ?></p>
                                 <p class="mb-2">Kapasitas : <?= $h['kapasitas']; ?></p>
                                 <h6 class="mb-0">Status : <?= $h['status']; ?></h6>
-                                <a href="terisi.php?id_meja=<?php echo $h['id_meja']; ?>" class="btn btn-primary m-2">Terisi</a>
-                                <a href="kosong.php?id_meja=<?php echo $h['id_meja']; ?>" class="btn btn-primary m-2">Tersedia</a>
+                                <a href="terisi.php?no_meja=<?php echo $h['no_meja']; ?>" class="btn btn-primary m-2">Terisi</a>
+                                <a href="kosong.php?no_meja=<?php echo $h['no_meja']; ?>" class="btn btn-primary m-2">Tersedia</a>
                             </div>
                         </div>
                     </div>

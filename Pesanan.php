@@ -141,6 +141,7 @@ include 'koneksi.php';
                                             </div>
                                         <?php  } ?>
                                     </div>
+                                </form>
                             </div>
 
                             <p class="h5 text-center"> Meja Dipilih : <?= isset($_SESSION["meja_dipilih"]) ? $_SESSION["meja_dipilih"] : ""; ?></p>
@@ -151,20 +152,18 @@ include 'koneksi.php';
                             <div class="d-flex align-items-center justify-content-between mb-4">
                                 <h6 class="mb-0">Pelanggan</h6>
                             </div>
-                            <form>
+                            <form method="post" action="pesan.php">
                                 <div class="mb-3">
                                     <label>Jumlah Tamu</label>
-                                    <input type="number" class="form-control" id="txtjumlahtamu">
+                                    <input type="number" class="form-control" id="jumlahtamu" name="jumlahtamu">
+                                    <input type="text" name="nmeja" id="nmeja" value="<?= isset($_SESSION["meja_dipilih"]) ? $_SESSION["meja_dipilih"] : ""; ?>">
+                                    <input type="text" name="tglpesan" id="tglpesan" value="<?= date('Y-m-d'); ?>">
+                                    <input type="text" name="status" id="status" value="Proses">
                                 </div>
+                                <button type="submit" class="btn btn-lg btn-primary m-3 justify-content-between"> Next (Pilih menu)</button>
                             </form>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 m-3 m-auto ml-5 p-5">
-                <div class="row justify-content-center">
-                    <a href="PesananBaru.php"><button type="button" class="btn btn-lg btn-primary m-3 justify-content-between"> Next (Pilih menu)</button></a>
                 </div>
             </div>
 
