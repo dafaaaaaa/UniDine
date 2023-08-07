@@ -137,11 +137,7 @@
                                         <div class="col-md-6 m-auto p-2">
                                             <div class="card-deck justify-content-center" style="width: 300px;"> 
                                                 <div class="card " style="width:400px">
-<<<<<<< HEAD:dashmin-1.0.0/PesananBaru.php
                                                 <center><?php echo "<img src='$h[pic]' width='175' height='175' />";?> 
-=======
-                                                    <img src="img/Nasi.jpeg" class="img-fluid rounded mx-auto d-block" width="175" height="175"  alt="...">
->>>>>>> e431f8215c51b9995954e624cc24d5484fb6f34f:PesananBaru.php
                                                         <div class="card-body">
                                                             <h5 class="card-title"><?= $h['nama']; ?></h5>
                                                             <p class="card-text"><?= $h['deks']; ?></p>
@@ -161,14 +157,11 @@
                                 
                                 <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
                                 <?php
-                                // Define your base URL here
-                                $base_url = "https://github.com/dafaaaaaa/UniDine/tree/main/dashmin-1.0.0"; // Ganti dengan URL dasar situs Anda
-
                                 $hasil = mysqli_query($koneksi, "SELECT * FROM tbl_menu WHERE kategori = 'Minuman'");
                                 while ($h = mysqli_fetch_array($hasil)) {
                                 ?>
                                 <div class="card-deck"> 
-                                    <div class="card">
+                                <div class="card " style="width:400px">
                                     <center><?php echo "<img src='$h[pic]' width='175' height='175' />";?> 
                                         <div class="card-body">
                                             <h5 class="card-title"><?= $h['nama']; ?></h5>
@@ -187,62 +180,27 @@
                                 </div>
 
                                 <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
-                                    <div class="card-deck">
-                                        <div class="card">
-                                          <img src="img/Kentang.jpeg" class="img-fluid rounded mx-auto d-block" width="175" height="175"  alt="...">
-                                          <div class="card-body">
-                                            <h5 class="card-title">Kentang Goreng</h5>
-                                            <p class="card-text">Goreng</p>
-                                            <p class="card-text"><small class="text-muted">Rp.35.000</small></p>
+                                <?php
+                                $hasil = mysqli_query($koneksi, "SELECT * FROM tbl_menu WHERE kategori = 'Cemilan'");
+                                while ($h = mysqli_fetch_array($hasil)) {
+                                ?>
+                                <div class="card-deck"> 
+                                <div class="card " style="width:400px">
+                                    <center><?php echo "<img src='$h[pic]' width='175' height='175' />";?> 
+                                        <div class="card-body">
+                                            <h5 class="card-title"><?= $h['nama']; ?></h5>
+                                            <p class="card-text"><?= $h['deks']; ?></p>
+                                            <p class="card-text"><small class="text-muted"><?= $h['harga']; ?></small></p>
                                             <div class="input-group" style="justify-content: center;">
                                                 <input type="button" value="-" class="button-minus" data-field="quantity">
                                                 <input type="number" step="1" max="" value="0" name="quantity" class="quantity-field">
                                                 <input type="button" value="+" class="button-plus" data-field="quantity">
                                             </div> 
-                                          </div>
                                         </div>
-                                        <div class="card">
-                                          <img src="img/Kentang.jpeg" class="card-img-top" alt="...">
-                                          <div class="card-body">
-                                            <h5 class="card-title">Kentang Krispi</h5>
-                                            <p class="card-text">Krispi</p>
-                                            <p class="card-text"><small class="text-muted">Rp.50.000 </small></p>
-                                            <div class="input-group" style="justify-content: center;">
-                                                <input type="button" value="-" class="button-minus" data-field="quantity">
-                                                <input type="number" step="1" max="" value="0" name="quantity" class="quantity-field">
-                                                <input type="button" value="+" class="button-plus" data-field="quantity">
-                                            </div>
-                                          </div>
-                                        </div>  
                                     </div>
-                                    <div class="card-deck">
-                                        <div class="card">
-                                          <img src="img/Kentang.jpeg" alt="...">
-                                          <div class="card-body">
-                                            <h5 class="card-title">Kentang Goreng</h5>
-                                            <p class="card-text">Goreng</p>
-                                            <p class="card-text"><small class="text-muted">Rp.35.000</small></p>
-                                            <div class="input-group" style="justify-content: center;">
-                                                <input type="button" value="-" class="button-minus" data-field="quantity">
-                                                <input type="number" step="1" max="" value="0" name="quantity" class="quantity-field">
-                                                <input type="button" value="+" class="button-plus" data-field="quantity">
-                                            </div> 
-                                          </div>
-                                        </div>
-                                        <div class="card">
-                                          <img src="img/Kentang.jpeg" class="card-img-top" alt="...">
-                                          <div class="card-body">
-                                            <h5 class="card-title">Kentang Krispi</h5>
-                                            <p class="card-text">Krispi</p>
-                                            <p class="card-text"><small class="text-muted">Rp.50.000 </small></p>
-                                            <div class="input-group" style="justify-content: center;">
-                                                <input type="button" value="-" class="button-minus" data-field="quantity">
-                                                <input type="number" step="1" max="" value="0" name="quantity" class="quantity-field">
-                                                <input type="button" value="+" class="button-plus" data-field="quantity">
-                                            </div>
-                                          </div>
-                                        </div>  
-                                    </div>
+                                </div>
+                                <?php } ?>
+
                                 </div>
                             </div>
                             
