@@ -92,6 +92,7 @@
             </div>
             <form method="post" action="insert_menu.php" enctype="multipart/form-data">
             <!-- Table Start -->
+        <section class="mx-4">
             <div class="col-sm-12 col-xl-6">
                 <div class="bg-light rounded h-100 p-4">
                     <div class="mb-3">
@@ -125,11 +126,13 @@
                     </div>
                 </div>
             </div>
-            <button type="submit" name="btn_simpan" class="btn btn-primary m-2">Simpan Menu </button></a>
-            <button type="reset" class="btn btn-primary m-2">Hapus Menu</button></a> 
-            <a href="Menu.php"><button type="button" class="btn btn-primary m-2">Kembali</button></a>    
+            <div class="row">
+                <button type="submit" name="btn_simpan" class="btn btn-primary m-2 col-md-2 mt-4">Simpan Menu </button>
+                <button type="reset" class="btn btn-primary m-2 col-md-2 mt-4">Hapus Menu</button>
+                <button type="button" class="btn btn-primary m-2 col-md-2 mt-4">Kembali<a href="Menu.php"></a></button>
+            </div>
             </form>
-
+        </section>
             <!-- Table End -->
             <!-- Footer Start -->
             <div class="container-fluid pt-4 px-4">

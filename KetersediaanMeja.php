@@ -93,21 +93,22 @@ include 'koneksi.php'
                     </div>
                 </div>
             </div>
-            <p class="h4 text-center"> Meja</p>
+            <p class="h4 text-center mb-3"> Meja</p>
             <div class="row g-4">
                 <?php
                 $hasil = mysqli_query($koneksi, "SELECT * FROM meja");
                 while ($h = mysqli_fetch_array($hasil)) {
                 ?>
-                    <div class="col-sm-6 col-xl-3">
-                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                            <i class="fa fa-chart-line fa-3x text-primary"></i>
-                            <div class="ms-3">
+                    <div class="col-xl-4 px-5">
+                        <div class="bg-light rounded d-flex mb-4 card " align="center">
+                            <div class="ms-3 p-4 card-body">
+                                <i class="bi bi-check-circle-fill fa-3x text-primary"></i>
                                 <p class="mb-2">Meja : <?= $h['no_meja']; ?></p>
                                 <p class="mb-2">Kapasitas : <?= $h['kapasitas']; ?></p>
                                 <h6 class="mb-0">Status : <?= $h['status']; ?></h6>
-                                <a href="terisi.php?no_meja=<?php echo $h['no_meja']; ?>" class="btn btn-primary m-2">Terisi</a>
-                                <a href="kosong.php?no_meja=<?php echo $h['no_meja']; ?>" class="btn btn-primary m-2">Tersedia</a>
+                                <br>
+                                <a href="terisi.php?no_meja=<?php echo $h['no_meja']; ?>" class="d-inline btn btn-primary m-2 col-md-6">Terisi</a>
+                                <a href="kosong.php?no_meja=<?php echo $h['no_meja']; ?>" class="d-inline btn btn-primary m-2 col-md-6">Tersedia</a>
                             </div>
                         </div>
                     </div>

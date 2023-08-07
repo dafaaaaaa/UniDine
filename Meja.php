@@ -90,8 +90,9 @@
                     </div>
                 </div>
             </div>
-            <a href="TambahMeja.php"><button type="button" class="btn btn-primary m-2">Edit Meja</button></a>
+            <a href="TambahMeja.php"><button type="button" class="btn btn-primary m-2 mb-3 mx-4 col-md-2">Edit Meja</button></a>
             <!-- Table Start -->
+          <section class="mx-4">
             <table id="myTable" class="table table-striped table-bordered table-responsive table-hover" >  
                 <thead>  
                   <tr>  
@@ -106,23 +107,23 @@
                     <td>A1</td>  
                     <td>Deket Jendela</td>  
                     <td>Ada</td>  
-                    <th><a href="#"><button type="button" class="btn btn-primary m-1">Hapus</button></a></th
+                    <th><a href="#"><button type="button" class="btn btn-primary m-1 col-md-6">Hapus</button></a></th
                   </tr>  
                   <tr>  
                     <td>A1</td>  
                     <td>Deket Jendela</td>  
                     <td>Ada</td>  
-                    <th><a href="#"><button type="button" class="btn btn-primary m-1">Hapus</button></a></th
+                    <th><a href="#"><button type="button" class="btn btn-primary m-1 col-md-6">Hapus</button></a></th
                   </tr> 
                   <tr>  
                     <td>A1</td>  
                     <td>Deket Jendela</td>  
                     <td>Ada</td>  
-                    <th><a href="#"><button type="button" class="btn btn-primary m-1">Hapus</button></a></th
+                    <th><a href="#"><button type="button" class="btn btn-primary m-1 col-md-6">Hapus</button></a></th
                   </tr>      
                 </tbody>  
               </table>  
-
+            </section>
             <!-- Table End -->
             <!-- Footer Start -->
             <div class="container-fluid pt-4 px-4">

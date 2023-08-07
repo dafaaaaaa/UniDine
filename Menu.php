@@ -90,8 +90,9 @@
                     </div>
                 </div>
             </div>
-            <a href="TambahMenu.php"><button type="button" class="btn btn-primary m-2">Edit Menu</button></a>
+            <a href="TambahMenu.php"><button type="button" class="btn btn-primary mx-4 mb-3 col-md-2">Edit Menu</button></a>
             <!-- Table Start -->
+            <section class="mx-4">
             <table id="myTable" class="table table-striped table-bordered table-responsive table-hover" >  
                 <thead>  
                   <tr>  
@@ -126,7 +127,7 @@
                   </tr>       
                 </tbody>  
               </table>  
-
+            </section>
             <!-- Table End -->
             <!-- Footer Start -->
             <div class="container-fluid pt-4 px-4">

@@ -91,6 +91,7 @@
                 </div>
             </div>
             <!-- Table Start -->
+        <section class="mx-4">
             <table id="myTable" class="table table-striped table-bordered table-responsive table-hover" >  
                 <thead>  
                   <tr>  
@@ -141,7 +142,7 @@
                 </tbody>  
               </table>  
               <a href="#"><button type="button" class="btn btn-primary m-2">Print</button></a>
-
+            </section>
             <!-- Table End -->
             <!-- Footer Start -->
             <div class="container-fluid pt-4 px-4">

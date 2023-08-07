@@ -92,6 +92,7 @@
             </div>
             <form method="post" action="insert_meja.php">
             <!-- Table Start -->
+        <section class="mx-4">
             <div class="col-sm-12 col-xl-6">
                 <div class="bg-light rounded h-100 p-4">
                     <div class="mb-3">
@@ -110,11 +111,13 @@
                     </div>
                 </div>
             </div>
-            <input type="submit" name="tubesrpl" class="btn btn-primary m-2" value="Simpan Meja"></a>
-            <input type="reset" class="btn btn-primary m-2" value="Hapus Meja"> 
-            <a href="Meja.php"><button type="button" class="btn btn-primary m-2">Kembali</button></a>    
+            <div class="row">
+                <button type="submit" name="tubesrpl" class="btn btn-primary m-2 m-2 col-md-2 mt-4">Simpan Meja</button>
+                <button type="reset" class="btn btn-primary m-2 m-2 col-md-2 mt-4">Hapus Meja</button>
+                <button type="button" class="btn btn-primary m-2 m-2 col-md-2 mt-4">Kembali<a href="Meja.php"></a></button>
+            </div>
             </form>
-
+        </section>
             <!-- Table End -->
             <!-- Footer Start -->
             <div class="container-fluid pt-4 px-4">
