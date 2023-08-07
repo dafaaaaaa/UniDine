@@ -19,7 +19,7 @@ include 'koneksi.php'
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
+
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
@@ -51,8 +51,8 @@ include 'koneksi.php'
             <nav class="navbar bg-light navbar-light">
                 <div class="navbar-nav w-100 ">
                     <a href="index.php" class="nav-item nav-link"><i class="fa fa-bell me-2"></i>Daftar Pesanan</a>
-                    <a href="KetersediaanMeja.php" class="nav-item nav-link "><i class="fa fa-envelope me-2"></i>Ketersedian Meja</a>
-                    <a href="Pesanan.php" class="nav-item nav-link active"><i class="fa fa-file-alt me-2"></i>Pesanan</a>
+                    <a href="KetersediaanMeja.php" class="nav-item nav-link active"><i class="fa fa-envelope me-2"></i>Ketersedian Meja</a>
+                    <a href="Pesanan.php" class="nav-item nav-link "><i class="fa fa-file-alt me-2"></i>Pesanan</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-keyboard me-2"></i>Pengelolaan</a>
                         <div class="dropdown-menu bg-transparent border-0">
@@ -86,50 +86,50 @@ include 'koneksi.php'
                 </div>
             </nav>
             <!-- Navbar End -->
-            <div class="container-fluid mb-4 pt-4 px-4 " >
+            <div class="container-fluid mb-4 pt-4 px-4 ">
                 <div class="bg-light rounded-top p-4">
-                    <div class="row">                       
-                        <p class="h4">  UniDine - Ketersedian Meja</p>  
+                    <div class="row">
+                        <p class="h4"> UniDine - Ketersedian Meja</p>
                     </div>
                 </div>
             </div>
-            <p class="h4 text-center"> Meja</p> 
+            <p class="h4 text-center"> Meja</p>
             <div class="row g-4">
                 <?php
-                    $hasil = mysqli_query($koneksi, "SELECT * FROM meja");
-                    while ($h = mysqli_fetch_array($hasil)) {
-                ?> 
-                <div class="col-sm-6 col-xl-3">
-                    <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                        <i class="fa fa-chart-line fa-3x text-primary"></i>
-                        <div class="ms-3">
-                            <p class="mb-2">Meja : <?= $h['no_meja']; ?></p>
-                            <p class="mb-2">Kapasitas : <?= $h['kapasitas']; ?></p>
-                            <h6 class="mb-0">Status : <?= $h['Status']; ?></h6>
-                            <a href="terisi.php?id_meja=<?php echo $h['id_meja']; ?>" class="btn btn-primary m-2" >Terisi</a>
-                            <a href="kosong.php?id_meja=<?php echo $h['id_meja']; ?>" class="btn btn-primary m-2" >Tersedia</a>  
+                $hasil = mysqli_query($koneksi, "SELECT * FROM meja");
+                while ($h = mysqli_fetch_array($hasil)) {
+                ?>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                            <i class="fa fa-chart-line fa-3x text-primary"></i>
+                            <div class="ms-3">
+                                <p class="mb-2">Meja : <?= $h['no_meja']; ?></p>
+                                <p class="mb-2">Kapasitas : <?= $h['kapasitas']; ?></p>
+                                <h6 class="mb-0">Status : <?= $h['Status']; ?></h6>
+                                <a href="terisi.php?id_meja=<?php echo $h['id_meja']; ?>" class="btn btn-primary m-2">Terisi</a>
+                                <a href="kosong.php?id_meja=<?php echo $h['id_meja']; ?>" class="btn btn-primary m-2">Tersedia</a>
+                            </div>
                         </div>
                     </div>
-                </div>
                 <?php } ?>
             </div>
         </div>
     </div>
 
 
-            
-            
-            <!-- Footer start -->
-            <div class="container-fluid pt-4 px-4">
-                <div class="bg-light rounded-top p-4">
-                    <div class="row ">
-                        <p class="h4 text-center">UniDine</p>
-                    </div>
-                </div>
+
+
+    <!-- Footer start -->
+    <div class="container-fluid pt-4 px-4">
+        <div class="bg-light rounded-top p-4">
+            <div class="row ">
+                <p class="h4 text-center">UniDine</p>
             </div>
-            <!-- Footer End -->
         </div>
-        <!-- Content End -->
+    </div>
+    <!-- Footer End -->
+    </div>
+    <!-- Content End -->
 
 
 
@@ -139,8 +139,8 @@ include 'koneksi.php'
 
 
 
-        <!-- Back to Top -->
-        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
     </div>
 
     <!-- JavaScript Libraries -->
