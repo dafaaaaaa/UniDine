@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 06, 2023 at 04:29 PM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.0.19
+-- Generation Time: Aug 07, 2023 at 05:10 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.1.17
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,40 +24,26 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `login`
---
-
-CREATE TABLE `login` (
-  `id` int(11) NOT NULL,
-  `username` varchar(20) NOT NULL,
-  `password` varchar(20) NOT NULL,
-  `role` int(5) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `meja`
 --
 
 CREATE TABLE `meja` (
-  `id_meja` int(11) NOT NULL,
   `no_meja` varchar(5) NOT NULL,
   `kapasitas` int(11) NOT NULL,
   `deskripsi` text NOT NULL,
-  `Status` varchar(11) DEFAULT 'Kosong'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `status` varchar(11) DEFAULT 'Kosong'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `meja`
 --
 
-INSERT INTO `meja` (`id_meja`, `no_meja`, `kapasitas`, `deskripsi`, `Status`) VALUES
-(1, 'A01', 5, 'lt1', 'Kosong'),
-(2, 'A02', 7, 'lt1', 'Kosong'),
-(3, 'A03', 7, 'lt1', 'Kosong'),
-(4, 'B01', 7, 'lt 1 tengah', 'Kosong'),
-(5, 'B02', 7, 'lt 1 tengah', 'Kosong');
+INSERT INTO `meja` (`no_meja`, `kapasitas`, `deskripsi`, `status`) VALUES
+('A01', 5, 'lt1', 'Terisi'),
+('A02', 7, 'lt1', 'Kosong'),
+('A03', 7, 'lt1', 'Kosong'),
+('B01', 7, 'lt 1 tengah', 'Kosong'),
+('B02', 7, 'lt 1 tengah', 'Kosong');
 
 -- --------------------------------------------------------
 
@@ -67,16 +53,11 @@ INSERT INTO `meja` (`id_meja`, `no_meja`, `kapasitas`, `deskripsi`, `Status`) VA
 
 CREATE TABLE `pesanan` (
   `id` int(7) NOT NULL,
-  `kd_pesanan` varchar(20) NOT NULL,
-  `pelanggan` varchar(111) NOT NULL,
-  `tipe` varchar(50) NOT NULL,
+  `no_meja` varchar(11) NOT NULL,
   `jumlah_tamu` int(3) NOT NULL,
-  `meja` varchar(111) DEFAULT NULL,
-  `waktu_masuk` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `waktu_selesai` timestamp NOT NULL DEFAULT current_timestamp(),
-  `operator` varchar(50) NOT NULL,
+  `tanggal_pesan` varchar(50) NOT NULL,
   `status` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -92,7 +73,7 @@ CREATE TABLE `tbl_menu` (
   `kategori` varchar(50) NOT NULL,
   `harga` int(20) NOT NULL,
   `pic` varchar(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tbl_menu`
@@ -103,7 +84,7 @@ INSERT INTO `tbl_menu` (`id`, `kd_menu`, `nama`, `deks`, `kategori`, `harga`, `p
 (2, 'MA02', 'Mie Kocok', 'Mie Kocok Bandung', 'Makanan', 15000, 'Kentang.jpeg'),
 (3, 'MA03', 'Bakso', 'Bakso Malang', 'Makanan', 15000, ''),
 (4, 'MI01', 'Es Jeruk', 'Es Jeruk Purut', 'Minuman', 10000, ''),
-(5, 'MI02', 'Es Teh', 'Teh manis dingin', 'Minuman', 8000, 'img/esteh.jpg');
+(5, 'MI02', 'Es Teh', 'Teh manis dingin', 'Minuman', 8000, 'esteh.jpg');
 
 -- --------------------------------------------------------
 
@@ -113,29 +94,41 @@ INSERT INTO `tbl_menu` (`id`, `kd_menu`, `nama`, `deks`, `kategori`, `harga`, `p
 
 CREATE TABLE `tbl_temp_pesanan` (
   `id` int(7) NOT NULL,
-  `id_temp` varchar(55) NOT NULL,
-  `kd_pesanan` varchar(20) NOT NULL,
-  `kd_menu` varchar(11) NOT NULL,
+  `id_pesanan` varchar(55) NOT NULL,
+  `id_menu` varchar(11) NOT NULL,
   `harga_at` int(20) NOT NULL,
   `qt` int(4) NOT NULL,
   `total` int(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user`
+--
+
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `role` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `login`
---
-ALTER TABLE `login`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `meja`
 --
 ALTER TABLE `meja`
-  ADD PRIMARY KEY (`id_meja`);
+  ADD PRIMARY KEY (`no_meja`);
+
+--
+-- Indexes for table `pesanan`
+--
+ALTER TABLE `pesanan`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `tbl_menu`
@@ -144,26 +137,32 @@ ALTER TABLE `tbl_menu`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `login`
+-- AUTO_INCREMENT for table `pesanan`
 --
-ALTER TABLE `login`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `meja`
---
-ALTER TABLE `meja`
-  MODIFY `id_meja` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+ALTER TABLE `pesanan`
+  MODIFY `id` int(7) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tbl_menu`
 --
 ALTER TABLE `tbl_menu`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
