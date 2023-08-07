@@ -17,7 +17,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
+
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
@@ -94,141 +94,135 @@
                 </div>
             </nav>
             <!-- Navbar End -->
-            <div class="container-fluid mb-4 pt-4 px-4 " >
+            <div class="container-fluid mb-4 pt-4 px-4 ">
                 <div class="bg-light rounded-top p-4">
-                    <div class="row">                       
-                        <p class="h4">  UniDine - Pesanan Baru</p>  
+                    <div class="row">
+                        <p class="h4"> UniDine - Pesanan Baru</p>
                     </div>
                 </div>
             </div>
-            
-            <p class="h4 text-center"> Pilih Menu & Check Out</p> 
+
+            <p class="h4 text-center"> Pilih Menu & Check Out</p>
             <div class="container-fluid pt-4 px-4">
                 <div class="row g-4">
                     <div class="col-sm-12 col-xl-6">
                         <div class="bg-light text-center rounded p-4">
                             <div class="d-flex align-items-center justify-content-between mb-4">
-                                <h6 class="mb-0">Pilih Menu</h6>   
+                                <h6 class="mb-0">Pilih Menu</h6>
                             </div>
-                            <ul class="nav nav-pills mb-3 justify-content-center"  id="pills-tab" role="tablist">
+                            <ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab" role="tablist">
                                 <li class="nav-item" role="presentation">
-                                    <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
-                                        data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
-                                        aria-selected="true">Makanan</button>
+                                    <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Makanan</button>
                                 </li>
                                 <li class="nav-item" role="presentation">
-                                    <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
-                                        data-bs-target="#pills-profile" type="button" role="tab"
-                                        aria-controls="pills-profile" aria-selected="false">Minuman</button>
+                                    <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Minuman</button>
                                 </li>
                                 <li class="nav-item" role="presentation">
-                                    <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill"
-                                        data-bs-target="#pills-contact" type="button" role="tab"
-                                        aria-controls="pills-contact" aria-selected="false">Cemilan</button>
+                                    <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Cemilan</button>
                                 </li>
                             </ul>
                             <div class="tab-content" id="pills-tabContent">
-                                <div class="tab-pane fade show active " id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" >
-                                <?php
+                                <div class="tab-pane fade show active " id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                                    <?php
                                     $hasil = mysqli_query($koneksi, "SELECT * FROM tbl_menu WHERE kategori = 'Makanan' ");
                                     while ($h = mysqli_fetch_array($hasil)) {
                                     ?>
-                                    <div class="row justify-content-md-center">
-                                        <div class="col-md-6 m-auto p-2">
-                                            <div class="card-deck justify-content-center" style="width: 300px;"> 
-                                                <div class="card " style="width:400px">
-                                                <center><?php echo "<img src='$h[pic]' width='175' height='175' />";?> 
-                                                        <div class="card-body">
-                                                            <h5 class="card-title"><?= $h['nama']; ?></h5>
-                                                            <p class="card-text"><?= $h['deks']; ?></p>
-                                                            <p class="card-text"><small class="text-muted"><?= $h['harga']; ?></small></p>
+                                        <div class="row justify-content-md-center">
+                                            <div class="col-md-6 m-auto p-2">
+                                                <div class="card-deck justify-content-center" style="width: 300px;">
+                                                    <div class="card " style="width:400px">
+                                                        <center><?php echo "<img src='./img/$h[pic]' width='175' height='175' />"; ?>
+                                                            <div class="card-body">
+                                                                <h5 class="card-title"><?= $h['nama']; ?></h5>
+                                                                <p class="card-text"><?= $h['deks']; ?></p>
+                                                                <p class="card-text"><small class="text-muted"><?= $h['harga']; ?></small></p>
                                                                 <div class="input-group" style="justify-content: center;">
                                                                     <input type="button" value="-" class="button-minus" data-field="quantity">
                                                                     <input type="number" step="1" max="" value="0" name="quantity" class="quantity-field">
                                                                     <input type="button" value="+" class="button-plus" data-field="quantity">
-                                                                </div> 
-                                                        </div>
+                                                                </div>
+                                                            </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                <?php } ?>
+                                    <?php } ?>
                                 </div>
-                                
+
                                 <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                                <?php
-                                $hasil = mysqli_query($koneksi, "SELECT * FROM tbl_menu WHERE kategori = 'Minuman'");
-                                while ($h = mysqli_fetch_array($hasil)) {
-                                ?>
-                                <div class="card-deck"> 
-                                <div class="card " style="width:400px">
-                                    <center><?php echo "<img src='$h[pic]' width='175' height='175' />";?> 
-                                        <div class="card-body">
-                                            <h5 class="card-title"><?= $h['nama']; ?></h5>
-                                            <p class="card-text"><?= $h['deks']; ?></p>
-                                            <p class="card-text"><small class="text-muted"><?= $h['harga']; ?></small></p>
-                                            <div class="input-group" style="justify-content: center;">
-                                                <input type="button" value="-" class="button-minus" data-field="quantity">
-                                                <input type="number" step="1" max="" value="0" name="quantity" class="quantity-field">
-                                                <input type="button" value="+" class="button-plus" data-field="quantity">
-                                            </div> 
+                                    <?php
+                                    $hasil = mysqli_query($koneksi, "SELECT * FROM tbl_menu WHERE kategori = 'Minuman'");
+                                    while ($h = mysqli_fetch_array($hasil)) {
+                                    ?>
+                                        <div class="card-deck">
+                                            <div class="card " style="width:400px">
+                                                <center><?php echo "<img src='$h[pic]' width='175' height='175' />"; ?>
+                                                    <div class="card-body">
+                                                        <h5 class="card-title"><?= $h['nama']; ?></h5>
+                                                        <p class="card-text"><?= $h['deks']; ?></p>
+                                                        <p class="card-text"><small class="text-muted"><?= $h['harga']; ?></small></p>
+                                                        <div class="input-group" style="justify-content: center;">
+                                                            <input type="button" value="-" class="button-minus" data-field="quantity">
+                                                            <input type="number" step="1" max="" value="0" name="quantity" class="quantity-field">
+                                                            <input type="button" value="+" class="button-plus" data-field="quantity">
+                                                        </div>
+                                                    </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <?php } ?>
+                                    <?php } ?>
 
                                 </div>
 
                                 <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
-                                <?php
-                                $hasil = mysqli_query($koneksi, "SELECT * FROM tbl_menu WHERE kategori = 'Cemilan'");
-                                while ($h = mysqli_fetch_array($hasil)) {
-                                ?>
-                                <div class="card-deck"> 
-                                <div class="card " style="width:400px">
-                                    <center><?php echo "<img src='$h[pic]' width='175' height='175' />";?> 
-                                        <div class="card-body">
-                                            <h5 class="card-title"><?= $h['nama']; ?></h5>
-                                            <p class="card-text"><?= $h['deks']; ?></p>
-                                            <p class="card-text"><small class="text-muted"><?= $h['harga']; ?></small></p>
-                                            <div class="input-group" style="justify-content: center;">
-                                                <input type="button" value="-" class="button-minus" data-field="quantity">
-                                                <input type="number" step="1" max="" value="0" name="quantity" class="quantity-field">
-                                                <input type="button" value="+" class="button-plus" data-field="quantity">
-                                            </div> 
+                                    <?php
+                                    $hasil = mysqli_query($koneksi, "SELECT * FROM tbl_menu WHERE kategori = 'Cemilan'");
+                                    while ($h = mysqli_fetch_array($hasil)) {
+                                    ?>
+                                        <div class="card-deck">
+                                            <div class="card " style="width:400px">
+                                                <center><?php echo "<img src='$h[pic]' width='175' height='175' />"; ?>
+                                                    <div class="card-body">
+                                                        <h5 class="card-title"><?= $h['nama']; ?></h5>
+                                                        <p class="card-text"><?= $h['deks']; ?></p>
+                                                        <p class="card-text"><small class="text-muted"><?= $h['harga']; ?></small></p>
+                                                        <div class="input-group" style="justify-content: center;">
+                                                            <input type="button" value="-" class="button-minus" data-field="quantity">
+                                                            <input type="number" step="1" max="" value="0" name="quantity" class="quantity-field">
+                                                            <input type="button" value="+" class="button-plus" data-field="quantity">
+                                                        </div>
+                                                    </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <?php } ?>
+                                    <?php } ?>
 
                                 </div>
                             </div>
-                            
-                           
-                        </div>   
+
+
+                        </div>
                     </div>
                     <div class="col-sm-12 col-xl-6">
                         <div class="bg-light rounded h-100 p-4">
                             <div class="d-flex align-items-center justify-content-between mb-4">
-                                <h6 class="mb-0">Detail Pesanan & Checkout</h6>   
+                                <h6 class="mb-0">Detail Pesanan & Checkout</h6>
                             </div>
-                            <p>Nomor Pesanan	: Nomor Pesanan</p>
-                            <p>Nama Pelanggan	: Cash (Pelanggan default)</p>
-                            <p>Jumlah Tamu	: 1</p>
-                            <p>Meja	: dqww  </p>
+                            <p>Nomor Pesanan : Nomor Pesanan</p>
+                            <p>Nama Pelanggan : Cash (Pelanggan default)</p>
+                            <p>Jumlah Tamu : 1</p>
+                            <p>Meja : dqww </p>
                             <a href="DetailPesanan.php"><button type="button" class="btn btn-primary m-2">Proses Pesanan</button></a>
-                            <a href="Pesanan.php"><button type="button" class="btn btn-primary m-2">Batal</button></a>    
+                            <a href="Pesanan.php"><button type="button" class="btn btn-primary m-2">Batal</button></a>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
 
-            
-    
 
-            
-            
+
+
+
+
             <!-- Footer start -->
             <div class="container-fluid pt-4 px-4">
                 <div class="bg-light rounded-top p-4">
@@ -266,13 +260,13 @@
 
 
 
-    
+
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
+    <!------ Include the above in your HEAD tag ---------->
     <script src="js/count.js"></script>
 
-					
+
 
 
     <!-- Template Javascript -->

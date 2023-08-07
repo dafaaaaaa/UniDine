@@ -1,3 +1,7 @@
+<?php
+include 'koneksi.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,7 +19,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
+
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
@@ -86,62 +90,61 @@
                 </div>
             </nav>
             <!-- Navbar End -->
-            <div class="container-fluid mb-4 pt-4 px-4 " >
+            <div class="container-fluid mb-4 pt-4 px-4 ">
                 <div class="bg-light rounded-top p-4">
-                    <div class="row">                       
-                        <p class="h4">  UniDine - Pesanan Baru</p>  
+                    <div class="row">
+                        <p class="h4"> UniDine - Pesanan Baru</p>
                     </div>
                 </div>
             </div>
-            
-            <p class="h4 text-center"> Pilih Meja & Pelanggan</p> 
+
+            <p class="h4 text-center"> Pilih Meja & Pelanggan</p>
             <div class="container-fluid pt-4 px-4">
                 <div class="row g-4">
                     <div class="col-sm-12 col-xl-6">
                         <div class="bg-light text-center rounded p-4">
                             <div class="d-flex align-items-center justify-content-between mb-4">
-                                <h6 class="mb-0">Pilih Meja</h6>   
+                                <h6 class="mb-0">Pilih Meja</h6>
                             </div>
                             <div class="card-body">
-                                <div class="row">
-                                    <div class="col text-center" style="margin-top: 15px;">
-                                        <p class="mb-2">Meja Dayat (Kosong)</p>
-                                        <h6 class="mb-0">Jumlah Tamu:0</h6>  
-                                        <button type="button" class="btn btn-primary m-2">Pilih</button>
+                                <?php
+                                if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                                    // Tangani data yang dikirim dari form
+                                    $mejaDipilih = $_POST["meja_dipilih"];
+
+                                    // Perbarui status meja di database menjadi "Terisi"
+                                    $updateQuery = "UPDATE meja SET status = 'Terisi' WHERE no_meja = '$mejaDipilih'";
+                                    mysqli_query($koneksi, $updateQuery);
+
+                                    // Simpan nomor meja yang dipilih dalam sesi
+                                    $_SESSION["meja_dipilih"] = $mejaDipilih;
+                                }
+                                ?>
+                                <form method="post">
+                                    <div class="row">
+                                        <?php
+                                        $query = "SELECT * FROM meja";
+                                        $result = mysqli_query($koneksi, $query);
+                                        while ($row = mysqli_fetch_array($result)) {
+
+                                        ?>
+                                            <div class="col text-center" style="margin-top: 15px;">
+                                                <p class="mb-2"><?= $row['no_meja']; ?> </p>
+                                                <p class="mb-2">(<?= $row['status']; ?>)</p>
+                                                <h6 class="mb-0">Kapasitas : <?= $row['kapasitas']; ?></h6>
+                                                <?php if ($row['status'] == 'Kosong') { ?>
+                                                    <button type="submit" name='meja_dipilih' value="<?= $row['no_meja']; ?>" class="btn btn-primary m-2">Pilih</button>
+                                                <?php } else { ?>
+                                                    <button type="button" class="btn btn-secondary m-2" disabled>Pilih</button>
+                                                <?php } ?>
+
+                                            </div>
+                                        <?php  } ?>
                                     </div>
-                                    <div class="col text-center" style="margin-top: 15px;">
-                                        <p class="mb-2">Meja Dayat (Kosong)</p>
-                                        <h6 class="mb-0">Jumlah Tamu:0</h6>  
-                                        <button type="button" class="btn btn-primary m-2">Pilih</button>
-                                    </div>
-                                    <div class="col text-center" style="margin-top: 15px;">
-                                        <p class="mb-2">Meja Dayat (Kosong)</p>
-                                        <h6 class="mb-0">Jumlah Tamu:0</h6>  
-                                        <button type="button" class="btn btn-primary m-2">Pilih</button>
-                                    </div>
-                                </div>
-                            </div>  
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col text-center" style="margin-top: 15px;">
-                                        <p class="mb-2">Meja Dayat (Kosong)</p>
-                                        <h6 class="mb-0">Jumlah Tamu:0</h6>  
-                                        <button type="button" class="btn btn-primary m-2">Pilih</button>
-                                    </div>
-                                    <div class="col text-center" style="margin-top: 15px;">
-                                        <p class="mb-2">Meja Dayat (Kosong)</p>
-                                        <h6 class="mb-0">Jumlah Tamu:0</h6>  
-                                        <button type="button" class="btn btn-primary m-2">Pilih</button>
-                                    </div>
-                                    <div class="col text-center" style="margin-top: 15px;">
-                                        <p class="mb-2">Meja Dayat (Kosong)</p>
-                                        <h6 class="mb-0">Jumlah Tamu:0</h6>  
-                                        <button type="button" class="btn btn-primary m-2">Pilih</button>
-                                    </div>
-                                </div>
-                            </div>    
-                            <p class="h5 text-center"> Meja Dipilih :</p>
-                        </div>   
+                            </div>
+
+                            <p class="h5 text-center"> Meja Dipilih : <?= isset($_SESSION["meja_dipilih"]) ? $_SESSION["meja_dipilih"] : ""; ?></p>
+                        </div>
                     </div>
                     <div class="col-sm-12 col-xl-6">
                         <div class="bg-light rounded p-4">
@@ -149,19 +152,6 @@
                                 <h6 class="mb-0">Pelanggan</h6>
                             </div>
                             <form>
-                                <div class="mb-3">
-                                    <label for="exampleInputEmail1" class="form-label">Nama Pelanggan</label>
-                                    <div class="form-floating mb-3">
-                                        <select class="form-select" id="floatingSelect"
-                                            aria-label="Floating label select example">
-                                            <option value="1">Dinar</option>
-                                            <option value="2">Dayat</option>
-                                            <option value="3">Agung</option>
-                                        </select>
-                                        <label for="floatingSelect">Pilih Pelanggan</label>
-                                    </div>
-
-                                </div>
                                 <div class="mb-3">
                                     <label>Jumlah Tamu</label>
                                     <input type="number" class="form-control" id="txtjumlahtamu">
@@ -171,17 +161,17 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="col-md-4 m-3 m-auto ml-5 p-5">
                 <div class="row justify-content-center">
                     <a href="PesananBaru.php"><button type="button" class="btn btn-lg btn-primary m-3 justify-content-between"> Next (Pilih menu)</button></a>
                 </div>
             </div>
-            
-    
 
-            
-            
+
+
+
+
             <!-- Footer start -->
             <div class="container-fluid pt-4 px-4">
                 <div class="bg-light rounded-top p-4">
