@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $harga = $_POST['harga'];
 
     // Upload gambar
-    $targetDir = "img/"; // Directory where you want to store the uploaded images
+    $targetDir = "pic"; // Directory where you want to store the uploaded images
     $targetFile = $targetDir . basename($_FILES["pic"]["name"]);
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
@@ -60,8 +60,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         if (move_uploaded_file($_FILES["pic"]["tmp_name"], $targetFile)) {
 
+            // Remove "img/" from the targetFile path before storing in the database
+            $targetFileWithoutDir = basename($_FILES["pic"]["name"]);
+
             // Perintah SQL INSERT
-            $sql = "INSERT INTO tbl_menu (kd_menu, nama, deks, kategori, harga, pic) VALUES ('$kd_menu', '$nama', '$deskripsi','$kategori','$harga','$targetFile')";
+            $sql = "INSERT INTO tbl_menu (kd_menu, nama, deks, kategori, harga, pic) VALUES ('$kd_menu', '$nama', '$deskripsi','$kategori','$harga','$targetFileWithoutDir')";
 
             if (mysqli_query($koneksi, $sql)) {
                 echo "<script>alert('Menu berhasil ditambah!');</script>";
