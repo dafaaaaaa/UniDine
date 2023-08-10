@@ -152,15 +152,15 @@ include 'koneksi.php';
                             <div class="d-flex align-items-center justify-content-between mb-4">
                                 <h6 class="mb-0">Pelanggan</h6>
                             </div>
-                            <form method="post" action="pesan.php">
+                            <form method="post" action="PesananBaru.php">
                                 <div class="mb-3">
                                     <label>Jumlah Tamu</label>
                                     <input type="number" class="form-control" id="jumlahtamu" name="jumlahtamu">
-                                    <input type="text" name="nmeja" id="nmeja" value="<?= isset($_SESSION["meja_dipilih"]) ? $_SESSION["meja_dipilih"] : ""; ?>">
-                                    <input type="text" name="tglpesan" id="tglpesan" value="<?= date('Y-m-d'); ?>">
-                                    <input type="text" name="status" id="status" value="Proses">
+                                    <input type="hidden" name="nmeja" id="nmeja" value="<?= isset($_SESSION["meja_dipilih"]) ? $_SESSION["meja_dipilih"] : ""; ?> ">
+                                    <input type="hidden" name="tglpesan" id="tglpesan" value="<?= date('Y-m-d'); ?>">
+                                    <input type="hidden" name="status" id="status" value="Proses">
                                 </div>
-                                <button type="submit" class="btn btn-lg btn-primary m-3 justify-content-between"> Next (Pilih menu)</button>
+                                <button type="submit" name="input" class="btn btn-lg btn-primary m-3 justify-content-between"> Next (Pilih menu)</button>
                             </form>
                         </div>
                     </div>

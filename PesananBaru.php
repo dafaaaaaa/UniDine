@@ -138,6 +138,8 @@
                                                                     <input type="button" value="-" class="button-minus" data-field="quantity">
                                                                     <input type="number" step="1" max="" value="0" name="quantity" class="quantity-field">
                                                                     <input type="button" value="+" class="button-plus" data-field="quantity">
+                                                                    <button class="btn btn-primary btn-sm" type="submit" name="submit">
+                                                                    <i class="fa fa-shopping-cart"></i>
                                                                 </div>
                                                             </div>
                                                     </div>
@@ -165,6 +167,8 @@
                                                                 <input type="button" value="-" class="button-minus" data-field="quantity">
                                                                 <input type="number" step="1" max="" value="0" name="quantity" class="quantity-field">
                                                                 <input type="button" value="+" class="button-plus" data-field="quantity">
+                                                                <button class="btn btn-primary btn-sm" type="submit" name="submit">
+                                                                <i class="fa fa-shopping-cart"></i>
                                                             </div>
                                                         </div>
                                                 </div>
@@ -192,6 +196,8 @@
                                                             <input type="button" value="-" class="button-minus" data-field="quantity">
                                                             <input type="number" step="1" max="" value="0" name="quantity" class="quantity-field">
                                                             <input type="button" value="+" class="button-plus" data-field="quantity">
+                                                            <button class="btn btn-primary btn-sm" type="submit" name="submit">
+                                                            <i class="fa fa-shopping-cart"></i>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -209,13 +215,22 @@
                                     <h6 class="mb-0">Detail Pesanan & Checkout</h6>
                                 </div>
                                 <?php
-                                    $hasil = mysqli_query($koneksi, "SELECT * FROM pesanan");
-                                    while ($h = mysqli_fetch_array($hasil)) {
+                                if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                                    // Tangani data yang dikirim dari form
+                                    $mejaDipilih = $_POST["nmeja"];
+                                    $jumlahTamu = $_POST["jumlahtamu"];
+
+                                    // Simpan nomor meja dan jumlah tamu dalam sesi
+                                    $_SESSION["meja_dipilih"] = $mejaDipilih;
+                                    $_SESSION['jumlah_tamu'] = $jumlahTamu;
+                                }
                                 ?>
-                                <p>Jumlah Tamu : <?= $h['jumlah_tamu']; ?></p>
-                                <p>Meja :<?= $h['no_meja']; ?> </p>
-                                <?php } ?>
-                                <a href="DetailPesanan.php"><button type="button" class="btn btn-primary m-2">Proses Pesanan</button></a>
+                                <form method="post" action="DetailPesanan.php">
+                                <input type="hidden" class="form-control" id="jumlahtamu" name="jumlahtamu" value="<?= isset($_SESSION["jumlah_tamu"]) ? $_SESSION["jumlah_tamu"] : ""; ?> ">
+                                <p>Jumlah Tamu: <?= isset($_SESSION["jumlah_tamu"]) ? $_SESSION["jumlah_tamu"] : ""; ?></p>
+                                <input type="hidden" name="nmeja" id="nmeja" value="<?= isset($_SESSION["meja_dipilih"]) ? $_SESSION["meja_dipilih"] : ""; ?> ">
+                                <p>Meja: <?= isset($_SESSION["meja_dipilih"]) ? $_SESSION["meja_dipilih"] : ""; ?></p>
+                                <button type="submit" class="btn btn-primary m-2">Proses Pesanan</button></a>
                                 <a href="Pesanan.php"><button type="button" class="btn btn-primary m-2">Batal</button></a>
                             </div>
                         </div>

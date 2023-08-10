@@ -1,3 +1,17 @@
+<?php include 'koneksi.php' ?>
+
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Tangani data yang dikirim dari form
+    $mejaDipilih = $_POST["nmeja"];
+    $jumlahTamu = $_POST["jumlahtamu"];
+
+    // Simpan nomor meja dan jumlah tamu dalam sesi
+    $_SESSION["meja_dipilih"] = $mejaDipilih;
+    $_SESSION['jumlah_tamu'] = $jumlahTamu;
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -100,13 +114,9 @@
                         <div class="bg-light rounded p-4">
                             <div class="d-flex justify-content-between mb-4">
                                 <h6 class="mb-0">Data Pesanan</h6>   
-                            </div>
-                            <p>No Invoice	: 08-04-2023-8IJK</p>
-                            <p>Pelanggan	: Cash (Pelanggan default)</p>
-                            <p>Tipe Pesanan	: Makan di tempat (Dine in)</p>
-                            <p>Jumlah Tamu	: 1</p>
-                            <p>No Meja	    : dqww</p>
-                            <p>Waktu Masuk	: 2023-08-04 03:45:12</p>
+                            </div>  
+                            <p>Jumlah Tamu: <?= isset($_SESSION["jumlah_tamu"]) ? $_SESSION["jumlah_tamu"] : ""; ?></p>
+                            <p>Meja: <?= isset($_SESSION["meja_dipilih"]) ? $_SESSION["meja_dipilih"] : ""; ?></p>
                           
                               
                             <p class="h6">Item Pesanan</p>
