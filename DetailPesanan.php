@@ -96,7 +96,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
                             <a href="Login.php" class="dropdown-item">Log Out</a>
                         </div>
-                    </div>
+                    </div> 
                 </div>
             </nav>
             <!-- Navbar End -->

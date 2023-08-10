@@ -218,7 +218,7 @@
                                 if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     // Tangani data yang dikirim dari form
                                     $mejaDipilih = $_POST["nmeja"];
-                                    $jumlahTamu = $_POST["jumlahtamu"];
+                                    $jumlahTamu = $_POST["jumlahtamu"]; 
 
                                     // Simpan nomor meja dan jumlah tamu dalam sesi
                                     $_SESSION["meja_dipilih"] = $mejaDipilih;

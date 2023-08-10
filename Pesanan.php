@@ -153,7 +153,7 @@ include 'koneksi.php';
                                 <h6 class="mb-0">Pelanggan</h6>
                             </div>
                             <form method="post" action="PesananBaru.php">
-                                <div class="mb-3">
+                                <div class="mb-3"> 
                                     <label>Jumlah Tamu</label>
                                     <input type="number" class="form-control" id="jumlahtamu" name="jumlahtamu">
                                     <input type="hidden" name="nmeja" id="nmeja" value="<?= isset($_SESSION["meja_dipilih"]) ? $_SESSION["meja_dipilih"] : ""; ?> ">
