@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 07, 2023 at 05:10 PM
+-- Generation Time: Aug 11, 2023 at 05:16 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.1.17
 
@@ -40,10 +40,11 @@ CREATE TABLE `meja` (
 
 INSERT INTO `meja` (`no_meja`, `kapasitas`, `deskripsi`, `status`) VALUES
 ('A01', 5, 'lt1', 'Terisi'),
-('A02', 7, 'lt1', 'Kosong'),
-('A03', 7, 'lt1', 'Kosong'),
-('B01', 7, 'lt 1 tengah', 'Kosong'),
-('B02', 7, 'lt 1 tengah', 'Kosong');
+('A02', 7, 'lt1', 'Terisi'),
+('A03', 7, 'lt1', 'Terisi'),
+('A10', 10, 'ajdoasjdsada', 'Terisi'),
+('B01', 7, 'lt 1 tengah', 'Terisi'),
+('B02', 7, 'lt 1 tengah', 'Terisi');
 
 -- --------------------------------------------------------
 
@@ -56,8 +57,17 @@ CREATE TABLE `pesanan` (
   `no_meja` varchar(11) NOT NULL,
   `jumlah_tamu` int(3) NOT NULL,
   `tanggal_pesan` varchar(50) NOT NULL,
+  `total` int(50) NOT NULL,
   `status` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `pesanan`
+--
+
+INSERT INTO `pesanan` (`id`, `no_meja`, `jumlah_tamu`, `tanggal_pesan`, `total`, `status`) VALUES
+(1, 'A01  ', 3, '2023-08-11 09:09:38', 100000, 'Dibatalkan'),
+(2, 'A02  ', 4, '2023-08-11 09:10:56', 70000, 'Dibatalkan');
 
 -- --------------------------------------------------------
 
@@ -96,10 +106,19 @@ CREATE TABLE `tbl_temp_pesanan` (
   `id` int(7) NOT NULL,
   `id_pesanan` varchar(55) NOT NULL,
   `id_menu` varchar(11) NOT NULL,
-  `harga_at` int(20) NOT NULL,
-  `qt` int(4) NOT NULL,
-  `total` int(20) NOT NULL
+  `qt` int(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tbl_temp_pesanan`
+--
+
+INSERT INTO `tbl_temp_pesanan` (`id`, `id_pesanan`, `id_menu`, `qt`) VALUES
+(1, '1', '1', 2),
+(2, '1', '2', 2),
+(3, '1', '3', 2),
+(4, '2', '1', 2),
+(5, '2', '2', 2);
 
 -- --------------------------------------------------------
 
@@ -137,6 +156,12 @@ ALTER TABLE `tbl_menu`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `tbl_temp_pesanan`
+--
+ALTER TABLE `tbl_temp_pesanan`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -150,13 +175,19 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `pesanan`
 --
 ALTER TABLE `pesanan`
-  MODIFY `id` int(7) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tbl_menu`
 --
 ALTER TABLE `tbl_menu`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `tbl_temp_pesanan`
+--
+ALTER TABLE `tbl_temp_pesanan`
+  MODIFY `id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `user`
