@@ -1,5 +1,18 @@
 <?php
 include 'koneksi.php';
+session_start(); // Start a session
+
+if (!isset($_SESSION['username'])) {
+    header("Location: login.php");
+    exit(); // Stop further execution of the page
+}
+if ($_SESSION['role'] == 2) {
+    header("Location: Menu.php");
+}
+if ($_SESSION['role'] == 3) {
+    header("Location: index.php");
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -153,7 +166,7 @@ include 'koneksi.php';
                                 <h6 class="mb-0">Pelanggan</h6>
                             </div>
                             <form method="post" action="PesananBaru.php">
-                                <div class="mb-3"> 
+                                <div class="mb-3">
                                     <label>Jumlah Tamu</label>
                                     <input type="number" class="form-control" id="jumlahtamu" name="jumlahtamu">
                                     <input type="hidden" name="nmeja" id="nmeja" value="<?= isset($_SESSION["meja_dipilih"]) ? $_SESSION["meja_dipilih"] : ""; ?> ">

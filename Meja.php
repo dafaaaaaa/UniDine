@@ -1,4 +1,10 @@
 <?php include 'koneksi.php';
+session_start(); // Start a session
+
+if (!isset($_SESSION['username'])) {
+    header("Location: login.php");
+    exit(); // 
+}
 // get data dari table meja
 $query = mysqli_query($koneksi, "SELECT * FROM meja");
 

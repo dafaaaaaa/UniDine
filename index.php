@@ -1,7 +1,17 @@
 <?php
+session_start(); // Start a session
+
+if (!isset($_SESSION['username'])) {
+    header("Location: login.php");
+    exit(); // Stop further execution of the page
+}
+if ($_SESSION['role'] == 2) {
+    header("Location: Menu.php");
+}
+
 include 'koneksi.php';
 // Query untuk mengambil data pesanan dari tabel tbl_pesanan
-$query = "SELECT p.id, p.no_meja, p.jumlah_tamu, p.status, SUM(m.harga * dp.qt) AS totalharga 
+$query = "SELECT p.id, p.no_meja, p.jumlah_tamu, p.status, p.total AS totalharga 
 FROM pesanan p 
 INNER JOIN tbl_temp_pesanan dp ON p.id = dp.id_pesanan 
 INNER JOIN tbl_menu m ON dp.id_order = m.id 
@@ -57,17 +67,26 @@ $result = mysqli_query($koneksi, $query);
         <div class="sidebar pe-4 pb-3">
             <nav class="navbar bg-light navbar-light">
                 <div class="navbar-nav w-100 ">
-                    <a href="index.php" class="nav-item nav-link active"><i class="fa fa-bell me-2"></i>Daftar Pesanan</a>
-                    <a href="KetersediaanMeja.php" class="nav-item nav-link "><i class="fa fa-envelope me-2"></i>Ketersedian Meja</a>
-                    <a href="Pesanan.php" class="nav-item nav-link"><i class="fa fa-file-alt me-2"></i>Pesanan</a>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-keyboard me-2"></i>Pengelolaan</a>
-                        <div class="dropdown-menu bg-transparent border-0">
-                            <a href="Menu.php" class="dropdown-item">Menu</a>
-                            <a href="Meja.php" class="dropdown-item">Meja</a>
+                    <?php if ($_SESSION['role'] == 1 || $_SESSION['role'] == 3) { ?>
+                        <a href="index.php" class="nav-item nav-link active"><i class="fa fa-bell me-2"></i>Daftar Pesanan</a>
+                    <?php } ?>
+                    <?php if ($_SESSION['role'] == 1 || $_SESSION['role'] == 3) { ?>
+                        <a href="KetersediaanMeja.php" class="nav-item nav-link "><i class="fa fa-envelope me-2"></i>Ketersedian Meja</a>
+                    <?php } ?>
+                    <?php if ($_SESSION['role'] == 1) { ?>
+                        <a href="Pesanan.php" class="nav-item nav-link"><i class="fa fa-file-alt me-2"></i>Pesanan</a>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-keyboard me-2"></i>Pengelolaan</a>
+                            <div class="dropdown-menu bg-transparent border-0">
+                                <a href="Menu.php" class="dropdown-item">Menu</a>
+                                <a href="Meja.php" class="dropdown-item">Meja</a>
+                            </div>
                         </div>
-                    </div>
-                    <a href="Login.php" class="nav-item nav-link">Log Out</a>
+                    <?php } ?>
+                    <?php if ($_SESSION['role'] == 2) { ?>
+                        <a href="Menu.php" class="nav-item nav-link"><i class="fa fa-file-alt me-2"></i>Pesanan</a>
+                    <?php } ?>
+                    <a href="Logout.php" class="nav-item nav-link">Log Out</a>
                 </div>
             </nav>
         </div>
@@ -131,9 +150,16 @@ $result = mysqli_query($koneksi, $query);
                             echo "<td>{$row['jumlah_tamu']}</td>";
                             echo "<td>{$row['status']}</td>";
                             echo "<td>{$row['totalharga']}</td>";
-                            echo "<td>
-                             <a href='BatalkanPesanan.php?id={$id}'>Batalkan Pesanan</a></br>
-                             <a href='EditPesanan.php?id={$id}'>Edit Pesanan</a></td>";
+                            echo "<td>";
+
+                            if ($_SESSION['role'] == 3) {
+                                echo "<a href='Bayar.php?id={$id}'>Bayar</a></br>";
+                            }
+
+                            echo "<a href='BatalkanPesanan.php?id={$id}'>Batalkan Pesanan</a></br>";
+                            echo "<a href='EditPesanan.php?id={$id}'>Edit Pesanan</a></br>";
+                            echo "</td>";
+
                             echo "</tr>";
                         }
                         ?>

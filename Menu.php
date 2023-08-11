@@ -1,4 +1,12 @@
-<?php include 'koneksi.php';
+<?php
+session_start(); // Start a session
+
+if (!isset($_SESSION['username'])) {
+    header("Location: login.php");
+    exit(); // Stop further execution of the page
+}
+
+include 'koneksi.php';
 // get data dari table menu 
 $query = mysqli_query($koneksi, "SELECT * FROM tbl_menu");
 ?>
@@ -52,17 +60,26 @@ $query = mysqli_query($koneksi, "SELECT * FROM tbl_menu");
         <div class="sidebar pe-4 pb-3">
             <nav class="navbar bg-light navbar-light">
                 <div class="navbar-nav w-100 ">
-                    <a href="index.php" class="nav-item nav-link "><i class="fa fa-bell me-2"></i>Daftar Pesanan</a>
-                    <a href="KetersediaanMeja.php" class="nav-item nav-link "><i class="fa fa-envelope me-2"></i>Ketersedian Meja</a>
-                    <a href="Pesanan.php" class="nav-item nav-link"><i class="fa fa-file-alt me-2"></i>Pesanan</a>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-keyboard me-2"></i>Pengelolaan</a>
-                        <div class="dropdown-menu bg-transparent border-0">
-                            <a href="Menu.php" class="dropdown-item Active">Menu</a>
-                            <a href="Meja.php" class="dropdown-item">Meja</a>
+                    <?php if ($_SESSION['role'] == 1 || $_SESSION['role'] == 3) { ?>
+                        <a href="index.php" class="nav-item nav-link"><i class="fa fa-bell me-2"></i>Daftar Pesanan</a>
+                    <?php } ?>
+                    <?php if ($_SESSION['role'] == 1 || $_SESSION['role'] == 3) { ?>
+                        <a href="KetersediaanMeja.php" class="nav-item nav-link "><i class="fa fa-envelope me-2"></i>Ketersedian Meja</a>
+                    <?php } ?>
+                    <?php if ($_SESSION['role'] == 1) { ?>
+                        <a href="Pesanan.php" class="nav-item nav-link"><i class="fa fa-file-alt me-2"></i>Pesanan</a>
+                        <div class="nav-item dropdown active">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-keyboard me-2"></i>Pengelolaan</a>
+                            <div class="dropdown-menu bg-transparent border-0 ">
+                                <a href="Menu.php" class="dropdown-item active">Menu</a>
+                                <a href="Meja.php" class="dropdown-item">Meja</a>
+                            </div>
                         </div>
-                    </div>
-                    <a href="Login.php" class="nav-item nav-link">Log Out</a>
+                    <?php } ?>
+                    <?php if ($_SESSION['role'] == 2) { ?>
+                        <a href="Menu.php" class="nav-item nav-link"><i class="fa fa-file-alt me-2"></i>Pesanan</a>
+                    <?php } ?>
+                    <a href="Logout.php" class="nav-item nav-link">Log Out</a>
                 </div>
             </nav>
         </div>
@@ -95,7 +112,9 @@ $query = mysqli_query($koneksi, "SELECT * FROM tbl_menu");
                     </div>
                 </div>
             </div>
-            <a href="TambahMenu.php"><button type="button" class="btn btn-primary mx-4 mb-3 col-md-2">Tambah Menu</button></a>
+            <?php if ($_SESSION['role'] == 1) { ?>
+                <a href="TambahMenu.php"><button type="button" class="btn btn-primary mx-4 mb-3 col-md-2">Tambah Menu</button></a>
+            <?php } ?>
             <!-- Table Start -->
             <section class="mx-4">
                 <table id="myTable" class="table table-striped table-bordered table-responsive table-hover">
@@ -105,6 +124,7 @@ $query = mysqli_query($koneksi, "SELECT * FROM tbl_menu");
                             <th>Deskripsi</th>
                             <th>Kategori</th>
                             <th>Harga</th>
+                            <th>Status</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -116,9 +136,16 @@ $query = mysqli_query($koneksi, "SELECT * FROM tbl_menu");
                                 <td><?= $h['deks']; ?></td>
                                 <td><?= $h['kategori']; ?></td>
                                 <td>Rp. <?= $h['harga']; ?></td>
+                                <td><?= $h['status']; ?></td>
                                 <td>
-                                    <a href="HapusMenu.php?id=<?= $h['id']; ?>">Hapus</a>
-                                    <a href="EditMenu.php?id=<?= $h['id']; ?>" style="margin-left: 5px;">Edit</a>
+                                    <?php if ($_SESSION['role'] == 1) { ?>
+                                        <a href="HapusMenu.php?id=<?= $h['id']; ?>">Hapus</a>
+                                        <a href="EditMenu.php?id=<?= $h['id']; ?>" style="margin-left: 5px;">Edit</a>
+                                    <?php } ?>
+                                    <?php if ($_SESSION['role'] == 2) { ?>
+                                        <a href="MenuTersedia.php?id=<?= $h['id']; ?>">Tersedia</a>
+                                        <a href="MenuTidakTersedia.php?id=<?= $h['id']; ?>">Tidak Tersedia</a>
+                                    <?php } ?>
                                 </td>
                             </tr>
                         <?php } ?>

@@ -123,7 +123,7 @@ session_start() ?>
                             <div class="tab-content" id="pills-tabContent">
                                 <div class="tab-pane fade show active " id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
                                     <?php
-                                    $hasil = mysqli_query($koneksi, "SELECT * FROM tbl_menu WHERE kategori = 'Makanan' ");
+                                    $hasil = mysqli_query($koneksi, "SELECT * FROM tbl_menu WHERE kategori = 'Makanan' AND status = 'Tersedia' ");
                                     while ($h = mysqli_fetch_array($hasil)) {
                                     ?>
                                         <form action="tambahorder.php" method="post">

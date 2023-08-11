@@ -1,5 +1,14 @@
 <?php
-include 'koneksi.php'
+include 'koneksi.php';
+session_start(); // Start a session
+
+if (!isset($_SESSION['username'])) {
+    header("Location: login.php");
+    exit(); // Stop further execution of the page
+}
+if ($_SESSION['role'] == 2) {
+    header("Location: Menu.php");
+}
 ?>
 
 <!DOCTYPE html>
@@ -50,17 +59,26 @@ include 'koneksi.php'
         <div class="sidebar pe-4 pb-3">
             <nav class="navbar bg-light navbar-light">
                 <div class="navbar-nav w-100 ">
-                    <a href="index.php" class="nav-item nav-link"><i class="fa fa-bell me-2"></i>Daftar Pesanan</a>
-                    <a href="KetersediaanMeja.php" class="nav-item nav-link active"><i class="fa fa-envelope me-2"></i>Ketersedian Meja</a>
-                    <a href="Pesanan.php" class="nav-item nav-link "><i class="fa fa-file-alt me-2"></i>Pesanan</a>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-keyboard me-2"></i>Pengelolaan</a>
-                        <div class="dropdown-menu bg-transparent border-0">
-                            <a href="Menu.php" class="dropdown-item ">Menu</a>
-                            <a href="Meja.php" class="dropdown-item ">Meja</a>
+                    <?php if ($_SESSION['role'] == 1 || $_SESSION['role'] == 3) { ?>
+                        <a href="index.php" class="nav-item nav-link "><i class="fa fa-bell me-2"></i>Daftar Pesanan</a>
+                    <?php } ?>
+                    <?php if ($_SESSION['role'] == 1 || $_SESSION['role'] == 3) { ?>
+                        <a href="KetersediaanMeja.php" class="nav-item nav-link active"><i class="fa fa-envelope me-2"></i>Ketersedian Meja</a>
+                    <?php } ?>
+                    <?php if ($_SESSION['role'] == 1) { ?>
+                        <a href="Pesanan.php" class="nav-item nav-link"><i class="fa fa-file-alt me-2"></i>Pesanan</a>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-keyboard me-2"></i>Pengelolaan</a>
+                            <div class="dropdown-menu bg-transparent border-0">
+                                <a href="Menu.php" class="dropdown-item">Menu</a>
+                                <a href="Meja.php" class="dropdown-item">Meja</a>
+                            </div>
                         </div>
-                    </div>
-                    <a href="Login.php" class="nav-item nav-link">Log Out</a>
+                    <?php } ?>
+                    <?php if ($_SESSION['role'] == 2) { ?>
+                        <a href="Menu.php" class="nav-item nav-link"><i class="fa fa-file-alt me-2"></i>Pesanan</a>
+                    <?php } ?>
+                    <a href="Logout.php" class="nav-item nav-link">Log Out</a>
                 </div>
             </nav>
         </div>

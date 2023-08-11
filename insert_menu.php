@@ -13,6 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $deskripsi = $_POST['deks'];
     $kategori = $_POST['kategori'];
     $harga = $_POST['harga'];
+    $status = "Tersedia";
 
     // Upload gambar
     $targetDir = "pic"; // Directory where you want to store the uploaded images
@@ -64,11 +65,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $targetFileWithoutDir = basename($_FILES["pic"]["name"]);
 
             // Perintah SQL INSERT
-            $sql = "INSERT INTO tbl_menu (kd_menu, nama, deks, kategori, harga, pic) VALUES ('$kd_menu', '$nama', '$deskripsi','$kategori','$harga','$targetFileWithoutDir')";
+            $sql = "INSERT INTO tbl_menu (kd_menu, nama, deks, kategori, harga, pic,status) VALUES ('$kd_menu', '$nama', '$deskripsi','$kategori','$harga','$targetFileWithoutDir','$status')";
 
             if (mysqli_query($koneksi, $sql)) {
                 echo "<script>alert('Menu berhasil ditambah!');</script>";
-                include("TambahMenu.php");
+                include("Menu.php");
             } else {
                 echo "Terjadi kesalahan: " . mysqli_error($koneksi);
             }
@@ -79,4 +80,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 mysqli_close($koneksi);
-?>
