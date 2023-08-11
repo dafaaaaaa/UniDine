@@ -10,13 +10,24 @@ if (isset($_POST['add_to_order'])) {
     $menuQuery = mysqli_query($koneksi, "SELECT * FROM tbl_menu WHERE id = $menuId");
     $menu = mysqli_fetch_assoc($menuQuery);
 
-    // Tambahkan menu yang dipilih ke pesanan pengguna
-    if ($menu) {
-        if (!isset($_SESSION['order'])) {
-            $_SESSION['order'] = [];
-        }
+    // Periksa apakah pesanan sudah ada dalam session
+    if (!isset($_SESSION['order'])) {
+        $_SESSION['order'] = [];
+    }
 
-        // Buat item baru dalam array pesanan
+    // Cek apakah menu sudah ada dalam pesanan
+    $itemExists = false;
+    foreach ($_SESSION['order'] as $key => $orderItem) {
+        if ($orderItem['menu_id'] == $menuId) {
+            // Update jumlah jika menu sudah ada dalam pesanan
+            $_SESSION['order'][$key]['quantity'] += $quantity;
+            $itemExists = true;
+            break;
+        }
+    }
+
+    // Tambahkan menu baru ke pesanan jika belum ada
+    if (!$itemExists && $menu) {
         $orderItem = [
             'menu_id' => $menuId,
             'nama' => $menu['nama'],
@@ -24,7 +35,6 @@ if (isset($_POST['add_to_order'])) {
             'quantity' => $quantity
         ];
 
-        // Tambahkan item ke array pesanan
         $_SESSION['order'][] = $orderItem;
     }
 }
@@ -32,3 +42,4 @@ if (isset($_POST['add_to_order'])) {
 // Alihkan kembali ke halaman menu
 header("Location: PesananBaru.php");
 exit();
+?>

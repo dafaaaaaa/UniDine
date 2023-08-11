@@ -1,3 +1,13 @@
+<?php
+include 'koneksi.php';
+// Query untuk mengambil data pesanan dari tabel tbl_pesanan
+$query = "SELECT p.id, p.no_meja, p.jumlah_tamu, p.status, SUM(m.harga * dp.qt) AS totalharga 
+FROM pesanan p 
+INNER JOIN tbl_temp_pesanan dp ON p.id = dp.id_pesanan 
+INNER JOIN tbl_menu m ON dp.id = m.id 
+GROUP BY p.id";
+$result = mysqli_query($koneksi, $query);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,7 +25,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
+
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
@@ -53,8 +63,8 @@
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-keyboard me-2"></i>Pengelolaan</a>
                         <div class="dropdown-menu bg-transparent border-0">
-                          <a href="Menu.php" class="dropdown-item">Menu</a>
-                          <a href="Meja.php" class="dropdown-item">Meja</a>
+                            <a href="Menu.php" class="dropdown-item">Menu</a>
+                            <a href="Meja.php" class="dropdown-item">Meja</a>
                         </div>
                     </div>
                     <a href="Login.php" class="nav-item nav-link">Log Out</a>
@@ -83,65 +93,53 @@
                 </div>
             </nav>
             <!-- Navbar End -->
-            <div class="container-fluid mb-4 pt-4 px-4 " >
+            <div class="container-fluid mb-4 pt-4 px-4 ">
                 <div class="bg-light rounded-top p-4">
-                    <div class="row">                       
-                        <p class="h4">  UniDine - Daftar Pesanan</p>  
+                    <div class="row">
+                        <p class="h4"> UniDine - Daftar Pesanan</p>
                     </div>
                 </div>
             </div>
             <!-- Table Start -->
-        <section class="mx-4">
-            <table id="myTable" class="table table-striped table-bordered table-responsive table-hover" >  
-                <thead>  
-                  <tr>  
-                    <th>Pesanan</th>  
-                    <th>Meja</th>  
-                    <th>Tamu</th>
-                    <th>Status Pembayaran</th>
-                    <th>Aksi</th>  
-                  </tr>  
-                </thead>  
-                <tbody>  
-                  <tr>  
-                    <td>Nasi Goreng</td>  
-                    <td>1</td>  
-                    <td>A1</td>  
-                    <td>active</td>
-                    <td><select class="form-select form-select-sm mb-3" aria-label=".form-select-sm example">
-                      <option selected>Aksi</option>
-                      <option value="1">Update Pesanan</option>
-                      <option value="2">Bayar</option>
-                      <option value="3">Batalkan Pesanan</option>
-                      </select></td>  
-                  </tr>  
-                  <tr>  
-                    <td>Nasi Goreng</td>  
-                    <td>1</td>  
-                    <td>A1</td>  
-                    <td>active</td>
-                    <td><select class="form-select form-select-sm mb-3" aria-label=".form-select-sm example">
-                      <option selected>Aksi</option>
-                      <option value="1">Update Pesanan</option>
-                      <option value="2">Bayar</option>
-                      <option value="3">Batalkan Pesanan</option>
-                      </select></td>  
-                  </tr>   
-                  <tr>  
-                    <td>Nasi Goreng</td>  
-                    <td>1</td>  
-                    <td>A1</td>  
-                    <td>active</td>
-                    <td><select class="form-select form-select-sm mb-3" aria-label=".form-select-sm example">
-                      <option selected>Aksi</option>
-                      <option value="1">Update Pesanan</option>
-                      <option value="2">Bayar</option>
-                      <option value="3">Batalkan Pesanan</option>
-                      </select></td>  
-                  </tr>    
-                </tbody>  
-              </table>  
-              <a href="#"><button type="button" class="btn btn-primary m-2">Print</button></a>
+            <section class="mx-4">
+                <table id="myTable" class="table table-striped table-bordered table-responsive table-hover">
+                    <thead>
+                        <tr>
+                            <th>Pesanan</th>
+                            <th>Meja</th>
+                            <th>Tamu</th>
+                            <th>Status </th>
+                            <th>Total Harga</th>
+                            <th>Aksi</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            echo "<tr>";
+                            echo "<td>";
+                            // Query untuk mengambil menu yang dipilih dalam pesanan
+                            $menu_query = "SELECT m.nama, dp.qt FROM tbl_temp_pesanan dp INNER JOIN tbl_menu m ON dp.id_menu = m.id WHERE dp.id_pesanan = '{$row['id']}'";
+                            $menu_result = mysqli_query($koneksi, $menu_query);
+                            while ($menu = mysqli_fetch_assoc($menu_result)) {
+                                echo "{$menu['nama']} ({$menu['qt']})<br>";
+                            }
+                            $id = $row['id'];
+                            echo "</td>";
+                            echo "<td>{$row['no_meja']}</td>";
+                            echo "<td>{$row['jumlah_tamu']}</td>";
+                            echo "<td>{$row['status']}</td>";
+                            echo "<td>{$row['totalharga']}</td>";
+                            echo "<td>
+                             <a href='BatalkanPesanan.php?id={$id}'>Batalkan Pesanan</a></br>
+                             <a href='EditPesanan.php?id={$id}'>Edit Pesanan</a></td>";
+                            echo "</tr>";
+                        }
+                        ?>
+                    </tbody>
+                </table>
+                <a href="#"><button type="button" class="btn btn-primary m-2">Print</button></a>
             </section>
             <!-- Table End -->
             <!-- Footer Start -->
@@ -150,10 +148,10 @@
                     <div class="row ">
                         <p class="h4 text-center">UniDine</p>
                     </div>
-                    
+
                 </div>
             </div>
-            
+
             <!-- Footer End -->
         </div>
         <!-- Content End -->
@@ -175,10 +173,10 @@
     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
     <script src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script>
-        $(document).ready(function(){
+        $(document).ready(function() {
             $('#myTable').dataTable();
         });
-        </script>
+    </script>
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
 </body>

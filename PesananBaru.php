@@ -158,27 +158,30 @@ session_start() ?>
                                     $hasil = mysqli_query($koneksi, "SELECT * FROM tbl_menu WHERE kategori = 'Minuman'");
                                     while ($h = mysqli_fetch_array($hasil)) {
                                     ?>
-                                        <div class="row justify-content-md-center">
-                                            <div class="col-md-6 m-auto p-2">
-                                                <div class="card-deck justify-content-center" style="width: 300px;">
-                                                    <div class="card " style="width:400px">
-                                                        <center><?php echo "<img src='./img/$h[pic]' width='175' height='175' />"; ?>
-                                                            <div class="card-body">
-                                                                <h5 class="card-title"><?= $h['nama']; ?></h5>
-                                                                <p class="card-text"><?= $h['deks']; ?></p>
-                                                                <p class="card-text"><small class="text-muted"><?= $h['harga']; ?></small></p>
-                                                                <div class="input-group" style="justify-content: center;">
-                                                                    <input type="button" value="-" class="button-minus" data-field="quantity">
-                                                                    <input type="number" step="1" max="" value="0" name="quantity" class="quantity-field">
-                                                                    <input type="button" value="+" class="button-plus" data-field="quantity">
-                                                                    <button class="btn btn-primary btn-sm" type="submit" name="submit">
-                                                                        <i class="fa fa-shopping-cart"></i>
+                                        <form action="tambahorder.php" method="post">
+                                            <div class="row justify-content-md-center">
+                                                <div class="col-md-6 m-auto p-2">
+                                                    <div class="card-deck justify-content-center" style="width: 300px;">
+                                                        <div class="card " style="width:400px">
+                                                            <center><?php echo "<img src='./img/$h[pic]' width='175' height='175' />"; ?>
+                                                                <div class="card-body">
+                                                                    <h5 class="card-title"><?= $h['nama']; ?></h5>
+                                                                    <p class="card-text"><?= $h['deks']; ?></p>
+                                                                    <p class="card-text"><small class="text-muted"><?= $h['harga']; ?></small></p>
+                                                                    <div class="input-group" style="justify-content: center;">
+                                                                        <input type="text" name="menu_id" id="" value="<?= $h['id']; ?>" hidden>
+                                                                        <input type="button" value="-" class="button-minus" data-field="quantity">
+                                                                        <input type="number" step="1" max="" value="0" name="quantity" class="quantity-field">
+                                                                        <input type="button" value="+" class="button-plus" data-field="quantity">
+                                                                        <button class="btn btn-primary btn-sm" type="submit" name="add_to_order">
+                                                                            <i class="fa fa-shopping-cart"></i>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </form>
                                     <?php } ?>
                                 </div>
 
@@ -187,27 +190,30 @@ session_start() ?>
                                     $hasil = mysqli_query($koneksi, "SELECT * FROM tbl_menu WHERE kategori = 'Cemilan'");
                                     while ($h = mysqli_fetch_array($hasil)) {
                                     ?>
-                                        <div class="row justify-content-md-center">
-                                            <div class="col-md-6 m-auto p-2">
-                                                <div class="card-deck justify-content-center" style="width: 300px;">
-                                                    <div class="card " style="width:400px">
-                                                        <center><?php echo "<img src='./img/$h[pic]' width='175' height='175' />"; ?>
-                                                            <div class="card-body">
-                                                                <h5 class="card-title"><?= $h['nama']; ?></h5>
-                                                                <p class="card-text"><?= $h['deks']; ?></p>
-                                                                <p class="card-text"><small class="text-muted"><?= $h['harga']; ?></small></p>
-                                                                <div class="input-group" style="justify-content: center;">
-                                                                    <input type="button" value="-" class="button-minus" data-field="quantity">
-                                                                    <input type="number" step="1" max="" value="0" name="quantity" class="quantity-field">
-                                                                    <input type="button" value="+" class="button-plus" data-field="quantity">
-                                                                    <button class="btn btn-primary btn-sm" type="submit" name="submit">
-                                                                        <i class="fa fa-shopping-cart"></i>
+                                        <form action="tambahorder.php" method="post">
+                                            <div class="row justify-content-md-center">
+                                                <div class="col-md-6 m-auto p-2">
+                                                    <div class="card-deck justify-content-center" style="width: 300px;">
+                                                        <div class="card " style="width:400px">
+                                                            <center><?php echo "<img src='./img/$h[pic]' width='175' height='175' />"; ?>
+                                                                <div class="card-body">
+                                                                    <h5 class="card-title"><?= $h['nama']; ?></h5>
+                                                                    <p class="card-text"><?= $h['deks']; ?></p>
+                                                                    <p class="card-text"><small class="text-muted"><?= $h['harga']; ?></small></p>
+                                                                    <div class="input-group" style="justify-content: center;">
+                                                                        <input type="text" name="menu_id" id="" value="<?= $h['id']; ?>" hidden>
+                                                                        <input type="button" value="-" class="button-minus" data-field="quantity">
+                                                                        <input type="number" step="1" max="" value="0" name="quantity" class="quantity-field">
+                                                                        <input type="button" value="+" class="button-plus" data-field="quantity">
+                                                                        <button class="btn btn-primary btn-sm" type="submit" name="add_to_order">
+                                                                            <i class="fa fa-shopping-cart"></i>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </form>
                                     <?php } ?>
                                 </div>
                             </div>
@@ -242,8 +248,10 @@ session_start() ?>
                             }
                             ?>
                             <form method="post" action="ProsesPesanan.php">
-                                <!-- Input lain yang mungkin diperlukan -->
-                                <!-- ... -->
+                                <input type="hidden" class="form-control" id="jumlahtamu" name="jumlahtamu" value="<?= isset($_SESSION["jumlah_tamu"]) ? $_SESSION["jumlah_tamu"] : ""; ?> ">
+                                <p>Jumlah Tamu: <?= isset($_SESSION["jumlah_tamu"]) ? $_SESSION["jumlah_tamu"] : ""; ?></p>
+                                <input type="hidden" name="nmeja" id="nmeja" value="<?= isset($_SESSION["meja_dipilih"]) ? $_SESSION["meja_dipilih"] : ""; ?> ">
+                                <p>Meja: <?= isset($_SESSION["meja_dipilih"]) ? $_SESSION["meja_dipilih"] : ""; ?></p>
                                 <button type="submit" class="btn btn-primary m-2">Proses Pesanan</button>
                                 <a href="Pesanan.php"><button type="button" class="btn btn-primary m-2">Batal</button></a>
                             </form>
