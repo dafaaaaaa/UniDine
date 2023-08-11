@@ -1,3 +1,8 @@
+<?php include 'koneksi.php';
+// get data dari table menu 
+$query = mysqli_query($koneksi, "SELECT * FROM tbl_menu");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,7 +20,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
+
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
@@ -83,50 +88,42 @@
                 </div>
             </nav>
             <!-- Navbar End -->
-            <div class="container-fluid mb-4 pt-4 px-4 " >
+            <div class="container-fluid mb-4 pt-4 px-4 ">
                 <div class="bg-light rounded-top p-4">
-                    <div class="row">                       
-                        <p class="h4">  UniDine - Daftar Menu</p>  
+                    <div class="row">
+                        <p class="h4"> UniDine - Daftar Menu</p>
                     </div>
                 </div>
             </div>
-            <a href="TambahMenu.php"><button type="button" class="btn btn-primary mx-4 mb-3 col-md-2">Edit Menu</button></a>
+            <a href="TambahMenu.php"><button type="button" class="btn btn-primary mx-4 mb-3 col-md-2">Tambah Menu</button></a>
             <!-- Table Start -->
             <section class="mx-4">
-            <table id="myTable" class="table table-striped table-bordered table-responsive table-hover" >  
-                <thead>  
-                  <tr>  
-                    <th>Pesanan</th>  
-                    <th>Kategori</th>  
-                    <th>Deskripsi</th>
-                    <th>Harga</th>
-                    <th>Total Transaksi</th>
-                  </tr>  
-                </thead>  
-                <tbody>  
-                  <tr>  
-                    <td>Nasi Goreng</td>  
-                    <td>Makanan</td>  
-                    <td>Goreng</td>  
-                    <td>Rp. 10.000</td>
-                    <td>15</td>
-                  </tr>  
-                  <tr>  
-                    <td>Jus Apel</td>  
-                    <td>Minuman</td>  
-                    <td>Apel</td>  
-                    <td>Rp. 5.000</td>
-                    <td>423</td>
-                  </tr>
-                  <tr>  
-                    <td>Kentang Goreng</td>  
-                    <td>Cemilan</td>  
-                    <td>Goreng</td>  
-                    <td>Rp. 7.000</td>
-                    <td>15</td>
-                  </tr>       
-                </tbody>  
-              </table>  
+                <table id="myTable" class="table table-striped table-bordered table-responsive table-hover">
+                    <thead>
+                        <tr>
+                            <th>Nama Menu</th>
+                            <th>Deskripsi</th>
+                            <th>Kategori</th>
+                            <th>Harga</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php while ($h = mysqli_fetch_array($query)) {
+                        ?>
+                            <tr>
+                                <td><?= $h['nama']; ?></td>
+                                <td><?= $h['deks']; ?></td>
+                                <td><?= $h['kategori']; ?></td>
+                                <td>Rp. <?= $h['harga']; ?></td>
+                                <td>
+                                    <a href="HapusMenu.php?id=<?= $h['id']; ?>">Hapus</a>
+                                    <a href="EditMenu.php?id=<?= $h['id']; ?>" style="margin-left: 5px;">Edit</a>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
             </section>
             <!-- Table End -->
             <!-- Footer Start -->
@@ -136,7 +133,7 @@
                         <p class="h4 text-center">UniDine</p>
                     </div>
                 </div>
-                
+
             </div>
             <!-- Footer End -->
         </div>
@@ -159,10 +156,10 @@
     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
     <script src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script>
-        $(document).ready(function(){
+        $(document).ready(function() {
             $('#myTable').dataTable();
         });
-        </script>
+    </script>
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
 </body>

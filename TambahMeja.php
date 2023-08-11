@@ -15,7 +15,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
+
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
@@ -63,7 +63,7 @@
         </div>
         <!-- Sidebar End -->
 
- 
+
         <!-- Content Start -->
         <div class="content">
             <!-- Navbar Start -->
@@ -83,41 +83,40 @@
                 </div>
             </nav>
             <!-- Navbar End -->
-            <div class="container-fluid mb-4 pt-4 px-4 " >
+            <div class="container-fluid mb-4 pt-4 px-4 ">
                 <div class="bg-light rounded-top p-4">
-                    <div class="row">                       
-                        <p class="h4">  UniDine - Edit Meja</p>  
+                    <div class="row">
+                        <p class="h4"> UniDine - Tambah Meja</p>
                     </div>
                 </div>
             </div>
             <form method="post" action="insert_meja.php">
-            <!-- Table Start -->
-        <section class="mx-4">
-            <div class="col-sm-12 col-xl-6">
-                <div class="bg-light rounded h-100 p-4">
-                    <div class="mb-3">
-                        <label for="formFile" class="form-label">Nama Meja</label>
-                        <input type="text" name="no_meja" class="form-control">
-                    </div>
+                <!-- Table Start -->
+                <section class="mx-4">
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="bg-light rounded h-100 p-4">
+                            <div class="mb-3">
+                                <label for="formFile" class="form-label">Nama Meja</label>
+                                <input type="text" name="no_meja" class="form-control">
+                            </div>
 
-                    <div class="mb-3">
-                        <label for="formFile" class="form-label">Kapasitas</label>
-                        <input type="text" name="kapasitas" class="form-control">
+                            <div class="mb-3">
+                                <label for="formFile" class="form-label">Kapasitas</label>
+                                <input type="text" name="kapasitas" class="form-control">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="formFile" class="form-label">Deskripsi</label>
+                                <input type="textarea" class="form-control" name="deskripsi" style="height: 150px;">
+                            </div>
+                        </div>
                     </div>
-                    
-                    <div class="mb-3">
-                        <label for="formFile" class="form-label">Deskripsi</label>
-                        <input type="textarea" class="form-control" name="deskripsi" style="height: 150px;">
+                    <div class="row">
+                        <button type="submit" name="tubesrpl" class="btn btn-primary m-2 m-2 col-md-2 mt-4">Simpan Meja</button>
+                        <a href="Meja.php" class="btn btn-primary m-2 m-2 col-md-2 mt-4">Kembali</a>
                     </div>
-                </div>
-            </div>
-            <div class="row">
-                <button type="submit" name="tubesrpl" class="btn btn-primary m-2 m-2 col-md-2 mt-4">Simpan Meja</button>
-                <button type="reset" class="btn btn-primary m-2 m-2 col-md-2 mt-4">Hapus Meja</button>
-                <button type="button" class="btn btn-primary m-2 m-2 col-md-2 mt-4">Kembali<a href="Meja.php"></a></button>
-            </div>
             </form>
-        </section>
+            </section>
             <!-- Table End -->
             <!-- Footer Start -->
             <div class="container-fluid pt-4 px-4">
@@ -148,10 +147,10 @@
     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
     <script src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script>
-        $(document).ready(function(){
+        $(document).ready(function() {
             $('#myTable').dataTable();
         });
-        </script>
+    </script>
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
 </body>

@@ -17,11 +17,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (mysqli_query($koneksi, $sql)) {
         echo "<script>alert('Meja berhasil ditambah!');</script>";
-        include("TambahMeja.php");
+        include("Meja.php");
     } else {
         echo "Terjadi kesalahan: " . mysqli_error($koneksi);
     }
 }
 
 mysqli_close($koneksi);
-?>

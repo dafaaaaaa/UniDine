@@ -1,9 +1,30 @@
+<?php
+include 'koneksi.php';
+
+if (isset($_GET['no_meja'])) {
+    $no_meja = $_GET['no_meja'];
+
+    // Retrieve data for the specified Meja
+    $query = mysqli_query($koneksi, "SELECT * FROM meja WHERE no_meja = '$no_meja'");
+    $meja_data = mysqli_fetch_assoc($query);
+
+    // Ensure that the Meja data exists
+    if (!$meja_data) {
+        echo "Meja not found.";
+        exit;
+    }
+} else {
+    echo "Invalid request.";
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
-    <title>Tambah Menu</title>
+    <title>Edit Meja </title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -51,10 +72,10 @@
                     <a href="KetersediaanMeja.php" class="nav-item nav-link "><i class="fa fa-envelope me-2"></i>Ketersedian Meja</a>
                     <a href="Pesanan.php" class="nav-item nav-link"><i class="fa fa-file-alt me-2"></i>Pesanan</a>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-keyboard me-2"></i>Pengelolaan</a>
+                        <a href="#" class="nav-link dropdown-toggle " data-bs-toggle="dropdown"><i class="fa fa-keyboard me-2"></i>Pengelolaan</a>
                         <div class="dropdown-menu bg-transparent border-0">
-                            <a href="Menu.php" class="dropdown-item Active">Menu</a>
-                            <a href="Meja.php" class="dropdown-item">Meja</a>
+                            <a href="Menu.php" class="dropdown-item ">Menu</a>
+                            <a href="Meja.php" class="dropdown-item Active">Meja</a>
                         </div>
                     </div>
                     <a href="Login.php" class="nav-item nav-link">Log Out</a>
@@ -86,48 +107,34 @@
             <div class="container-fluid mb-4 pt-4 px-4 ">
                 <div class="bg-light rounded-top p-4">
                     <div class="row">
-                        <p class="h4"> UniDine - Tambah Menu</p>
+                        <p class="h4"> UniDine - Edit Meja</p>
                     </div>
                 </div>
             </div>
-            <form method="post" action="insert_menu.php" enctype="multipart/form-data">
+            <form method="post" action="UbahMeja.php">
                 <!-- Table Start -->
                 <section class="mx-4">
                     <div class="col-sm-12 col-xl-6">
                         <div class="bg-light rounded h-100 p-4">
                             <div class="mb-3">
-                                <label for="formFile" class="form-label">Kode Menu</label>
-                                <input type="text" name="kd_menu" class="form-control" id="floatingI   nput">
+                                <label for="formFile" class="form-label">No Meja</label>
+                                <input type="text" name="no_meja" class="form-control" value="<?= $meja_data['no_meja']; ?>">
                             </div>
+
                             <div class="mb-3">
-                                <label for="formFile" class="form-label">Nama Menu</label>
-                                <input type="text" name="nama" class="form-control" id="floatingInput">
+                                <label for="formFile" class="form-label">Kapasitas</label>
+                                <input type="text" name="kapasitas" class="form-control" value="<?= $meja_data['kapasitas']; ?>">
                             </div>
+
                             <div class="mb-3">
                                 <label for="formFile" class="form-label">Deskripsi</label>
-                                <input type="textarea" class="form-control" name="deks" style="height: 150px;">
-                            </div>
-                            <div class="mb-3">
-                                <label for="formFile" class="form-label">Kategori</label>
-                                <select name="kategori" class="form-select" id="floatingSelect" aria-label="Floating label select example">
-                                    <option value="Makanan">Makanan</option>
-                                    <option value="Minuman">Minuman</option>
-                                    <option value="Cemilan">Cemilan</option>
-                                </select>
-                            </div>
-                            <div class="mb-3">
-                                <label for="formFile" class="form-label">Harga</label>
-                                <input type="number" name="harga" calss="form-control" id="floatingInput">
-                            </div>
-                            <div class="mb-3">
-                                <label for="formFile" class="form-label">Foto</label>
-                                <input class="form-control" name="pic" type="file" id="formFile">
+                                <input type="textarea" class="form-control" name="deskripsi" style="height: 150px;" value="<?= $meja_data['deskripsi']; ?>">
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <button type="submit" name="btn_simpan" class="btn btn-primary m-2 col-md-2 mt-4">Simpan Menu </button>
-                        <a href="Menu.php" class="btn btn-primary m-2 col-md-2 mt-4">Kembali</a>
+                        <button type="submit" name="Edit" class="btn btn-primary m-2 m-2 col-md-2 mt-4">Edit Meja</button>
+                        <a href="Meja.php" class="btn btn-primary m-2 m-2 col-md-2 mt-4">Kembali</a>
                     </div>
             </form>
             </section>

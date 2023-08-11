@@ -102,13 +102,24 @@ include 'koneksi.php'
                     <div class="col-xl-4 px-5">
                         <div class="bg-light rounded d-flex mb-4 card " align="center">
                             <div class="ms-3 p-4 card-body">
-                                <i class="bi bi-check-circle-fill fa-3x text-primary"></i>
+                                <?php if ($h['status'] == "Terisi") { ?>
+                                    <i class="bi bi-x-circle-fill fa-3x text-primary"></i>
+                                <?php } elseif ($h['status'] == "Kosong") { ?>
+                                    <i class="bi bi-check-circle-fill fa-3x text-primary"></i>
+                                <?php } ?>
+
                                 <p class="mb-2">Meja : <?= $h['no_meja']; ?></p>
                                 <p class="mb-2">Kapasitas : <?= $h['kapasitas']; ?></p>
                                 <h6 class="mb-0">Status : <?= $h['status']; ?></h6>
                                 <br>
-                                <a href="terisi.php?no_meja=<?php echo $h['no_meja']; ?>" class="d-inline btn btn-primary m-2 col-md-6">Terisi</a>
-                                <a href="kosong.php?no_meja=<?php echo $h['no_meja']; ?>" class="d-inline btn btn-primary m-2 col-md-6">Tersedia</a>
+                                <!-- buat apabila status meja terisi button terisi menjadi disable -->
+                                <?php if ($h['status'] == "Terisi") { ?>
+                                    <a href="terisi.php?no_meja=<?php echo $h['no_meja']; ?>" class="d-inline btn btn-primary m-2 col-md-6 disabled">Terisi</a>
+                                    <a href="kosong.php?no_meja=<?php echo $h['no_meja']; ?>" class="d-inline btn btn-primary m-2 col-md-6 ">Tersedia</a>
+                                <?php } elseif ($h['status'] == "Kosong") { ?>
+                                    <a href="terisi.php?no_meja=<?php echo $h['no_meja']; ?>" class="d-inline btn btn-primary m-2 col-md-6 ">Terisi</a>
+                                    <a href="kosong.php?no_meja=<?php echo $h['no_meja']; ?>" class="d-inline btn btn-primary m-2 col-md-6 disabled">Tersedia</a>
+                                <?php } ?>
                             </div>
                         </div>
                     </div>
