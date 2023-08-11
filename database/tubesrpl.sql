@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 11, 2023 at 05:16 AM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.1.17
+-- Generation Time: Aug 11, 2023 at 02:41 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.0.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -32,7 +32,7 @@ CREATE TABLE `meja` (
   `kapasitas` int(11) NOT NULL,
   `deskripsi` text NOT NULL,
   `status` varchar(11) DEFAULT 'Kosong'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `meja`
@@ -43,8 +43,8 @@ INSERT INTO `meja` (`no_meja`, `kapasitas`, `deskripsi`, `status`) VALUES
 ('A02', 7, 'lt1', 'Terisi'),
 ('A03', 7, 'lt1', 'Terisi'),
 ('A10', 10, 'ajdoasjdsada', 'Terisi'),
-('B01', 7, 'lt 1 tengah', 'Terisi'),
-('B02', 7, 'lt 1 tengah', 'Terisi');
+('B01', 7, 'lt 1 tengah', 'Kosong'),
+('B02', 7, 'lt 1 tengah', 'Kosong');
 
 -- --------------------------------------------------------
 
@@ -59,15 +59,16 @@ CREATE TABLE `pesanan` (
   `tanggal_pesan` varchar(50) NOT NULL,
   `total` int(50) NOT NULL,
   `status` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `pesanan`
 --
 
 INSERT INTO `pesanan` (`id`, `no_meja`, `jumlah_tamu`, `tanggal_pesan`, `total`, `status`) VALUES
-(1, 'A01  ', 3, '2023-08-11 09:09:38', 100000, 'Dibatalkan'),
-(2, 'A02  ', 4, '2023-08-11 09:10:56', 70000, 'Dibatalkan');
+(1, 'A01  ', 5, '2023-08-11 18:45:56', 88000, 'Pending'),
+(2, 'A02  ', 6, '2023-08-11 18:46:47', 63000, 'Pending'),
+(3, 'A03  ', 4, '2023-08-11 19:19:27', 20000, 'Pending');
 
 -- --------------------------------------------------------
 
@@ -83,7 +84,7 @@ CREATE TABLE `tbl_menu` (
   `kategori` varchar(50) NOT NULL,
   `harga` int(20) NOT NULL,
   `pic` varchar(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tbl_menu`
@@ -92,9 +93,11 @@ CREATE TABLE `tbl_menu` (
 INSERT INTO `tbl_menu` (`id`, `kd_menu`, `nama`, `deks`, `kategori`, `harga`, `pic`) VALUES
 (1, 'MA01', 'Nasi Goreng', 'Cabe Ijo', 'Makanan', 20000, 'Nasi.jpeg'),
 (2, 'MA02', 'Mie Kocok', 'Mie Kocok Bandung', 'Makanan', 15000, 'Kentang.jpeg'),
-(3, 'MA03', 'Bakso', 'Bakso Malang', 'Makanan', 15000, ''),
-(4, 'MI01', 'Es Jeruk', 'Es Jeruk Purut', 'Minuman', 10000, ''),
-(5, 'MI02', 'Es Teh', 'Teh manis dingin', 'Minuman', 8000, 'esteh.jpg');
+(3, 'MA03', 'Bakso', 'Bakso Malang', 'Makanan', 15000, 'mie_bakso.jpeg'),
+(4, 'MI01', 'Es Jeruk', 'Es Jeruk Purut', 'Minuman', 10000, 'Jus.jpeg'),
+(5, 'MI02', 'Es Teh', 'Teh manis dingin', 'Minuman', 8000, 'esteh.jpg'),
+(6, 'CE01', 'Cireng Isi', 'Isi Ayam', 'Cemilan', 10000, 'cireng.jpeg'),
+(7, 'CE2', 'Batagor', 'Kuah / Kering', 'Cemilan', 8000, 'batagor.jpeg');
 
 -- --------------------------------------------------------
 
@@ -103,22 +106,25 @@ INSERT INTO `tbl_menu` (`id`, `kd_menu`, `nama`, `deks`, `kategori`, `harga`, `p
 --
 
 CREATE TABLE `tbl_temp_pesanan` (
-  `id` int(7) NOT NULL,
+  `id_order` int(7) NOT NULL,
   `id_pesanan` varchar(55) NOT NULL,
   `id_menu` varchar(11) NOT NULL,
   `qt` int(4) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tbl_temp_pesanan`
 --
 
-INSERT INTO `tbl_temp_pesanan` (`id`, `id_pesanan`, `id_menu`, `qt`) VALUES
+INSERT INTO `tbl_temp_pesanan` (`id_order`, `id_pesanan`, `id_menu`, `qt`) VALUES
 (1, '1', '1', 2),
-(2, '1', '2', 2),
-(3, '1', '3', 2),
-(4, '2', '1', 2),
-(5, '2', '2', 2);
+(2, '1', '2', 3),
+(3, '1', '4', 2),
+(4, '1', '5', 1),
+(5, '2', '2', 5),
+(6, '2', '3', 1),
+(8, '2', '5', 1),
+(9, '3', '1', 1);
 
 -- --------------------------------------------------------
 
@@ -131,7 +137,7 @@ CREATE TABLE `user` (
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `role` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Indexes for dumped tables
@@ -159,7 +165,7 @@ ALTER TABLE `tbl_menu`
 -- Indexes for table `tbl_temp_pesanan`
 --
 ALTER TABLE `tbl_temp_pesanan`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id_order`);
 
 --
 -- Indexes for table `user`
@@ -175,19 +181,19 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `pesanan`
 --
 ALTER TABLE `pesanan`
-  MODIFY `id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tbl_menu`
 --
 ALTER TABLE `tbl_menu`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `tbl_temp_pesanan`
 --
 ALTER TABLE `tbl_temp_pesanan`
-  MODIFY `id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_order` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `user`
