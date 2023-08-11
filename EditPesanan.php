@@ -111,19 +111,19 @@
                         $id = $_GET['id'];
                         $data1 = mysqli_query($koneksi, "SELECT tbl_temp_pesanan.*, tbl_menu.*
                             FROM tbl_temp_pesanan,tbl_menu 
-                            WHERE id_pesanan=$id AND tbl_menu.id = tbl_temp_pesanan.id_menu");
+                            WHERE tbl_temp_pesanan.id_pesanan=$id AND tbl_menu.id = tbl_temp_pesanan.id_menu");
                         $nomor = 1;
                         while($row = mysqli_fetch_array($data1)){
-                            $id = $row['id'];
+                            $id = $row['id_order'];
                             echo "</td>";
-                            echo "<td>{$row['id']}</td>";
+                            echo "<td>{$row['id_order']}</td>";
                             echo "<td>{$row['nama']}</td>";
                             echo "<td>{$row['id_pesanan']}</td>";
                             echo "<td>{$row['harga']}</td>";
                             echo "<td>{$row['qt']}</td>";
                             echo "<td>
                              <a href='hapus.php?id={$id}'>Hapus</a></br>
-                             <a href='Edit.php?id={$id}'>Edit Pesanan</a></td>";
+                             <a href='Edit.php?id={$id}'>Edit Pesanan</a></td>"; 
                             echo "</tr>";
                         }
                         ?>

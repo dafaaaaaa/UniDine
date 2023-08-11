@@ -90,42 +90,45 @@
                     </div>
                 </div>
             </div>
-
-	<?php 
-	include "koneksi.php";
-	$id = $_GET['id'];
-	$data1 = mysqli_query($koneksi, "SELECT tbl_temp_pesanan.*, tbl_menu.*
-    FROM tbl_temp_pesanan,tbl_menu 
-    WHERE id_pesanan=$id AND tbl_menu.id = tbl_temp_pesanan.id_menu");
-	$nomor = 1;
-	while($data = mysqli_fetch_array($data1)){
-	?>
-	<form action="update.php" method="post">		
-		<table>
-			<tr>
-				<td>Pesanan</td>
-				<td>
-					<input type="hidden" name="id" value="<?php echo $data['id'] ?>">
-					<input type="text" name="nama" value="<?php echo $data['nama'] ?>">
-				</td>					
-			</tr>	
-			<tr>
-				<td>ID Pesanan</td>
-				<td><input type="text" name="nama" value="<?php echo $data['id_pesanan'] ?>"></td>					
-			</tr>	
-			<tr>
-				<td>Quantity</td>
-				<td><input type="text" name="alamat" value="<?php echo $data['qt'] ?>"></td>					
-			</tr>	
-			<tr>
-				<td></td>
-				<td><input type="submit" value="Simpan"> <input type="reset" value="Hapus"></td>					
-			</tr>				
-		</table>
-	</form>
-	<?php 
-	} 
-	?>
+             <!-- Table Start -->
+             <section class="mx-4">
+                <?php 
+                include "koneksi.php";
+                $id = $_GET['id'];
+                $data1 = mysqli_query($koneksi, "SELECT tbl_temp_pesanan.*, tbl_menu.*
+                FROM tbl_temp_pesanan,tbl_menu 
+                WHERE tbl_temp_pesanan.id_order=$id AND tbl_menu.id = tbl_temp_pesanan.id_menu");
+                $nomor = 1;
+                while($data = mysqli_fetch_array($data1)){
+                ?>
+                <form action="updatepesan.php" method="post">		
+                    <table>
+                        <tr>
+                            <td>Pesanan</td>
+                            <td>
+                                <input type="hidden" name="id_order" value="<?php echo $data['id_order'] ?>">
+                                <input type="text" name="nama" value="<?php echo $data['nama'] ?>">
+                            </td>					
+                        </tr>	
+                        <tr>
+                            <td>ID Pesanan</td>
+                            <td><input type="text" name="id" value="<?php echo $data['id'] ?>"></td>					
+                        </tr>	
+                        <tr>
+                            <td>Quantity</td>
+                            <td><input type="text" name="qt" value="<?php echo $data['qt'] ?>"></td>					
+                        </tr>	
+                        <tr>
+                            <td></td>
+                            <td><input type="submit" name="tubesrpl" value="Simpan"> <input type="reset" value="Hapus"></td>					
+                        </tr>				
+                    </table>
+                </form>
+                <?php 
+                } 
+                ?>
+                            </section>
+            <!-- Table End -->
            <!-- Footer Start -->
            <div class="container-fluid pt-4 px-4">
                 <div class="bg-light rounded-top p-4">

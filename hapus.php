@@ -5,7 +5,7 @@ if (isset($_GET['id'])) {
     $id = $_GET['id'];
     
     // Perform the delete operation
-    $delete_query = "DELETE FROM tbl_temp_pesanan WHERE id = '$id'";
+    $delete_query = "DELETE FROM tbl_temp_pesanan WHERE id_order = '$id'";
     if (mysqli_query($koneksi, $delete_query)) {
         // Redirect back to the Meja.php page after successful deletion
         header('Location: index.php');

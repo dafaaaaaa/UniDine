@@ -4,7 +4,7 @@ include 'koneksi.php';
 $query = "SELECT p.id, p.no_meja, p.jumlah_tamu, p.status, SUM(m.harga * dp.qt) AS totalharga 
 FROM pesanan p 
 INNER JOIN tbl_temp_pesanan dp ON p.id = dp.id_pesanan 
-INNER JOIN tbl_menu m ON dp.id = m.id 
+INNER JOIN tbl_menu m ON dp.id_order = m.id 
 GROUP BY p.id";
 $result = mysqli_query($koneksi, $query);
 ?>
