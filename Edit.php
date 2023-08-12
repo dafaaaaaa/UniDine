@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Daftar Pesanan</title>
+    <title>Edit Pesanan</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -86,10 +86,11 @@
             <div class="container-fluid mb-4 pt-4 px-4 ">
                 <div class="bg-light rounded-top p-4">
                     <div class="row">
-                        <p class="h4"> UniDine - Daftar Pesanan</p>
+                        <p class="h4"> UniDine - Edit Pesanan</p>
                     </div>
                 </div>
             </div>
+
              <!-- Table Start -->
              <section class="mx-4">
                 <?php 
@@ -102,73 +103,42 @@
                 while($data = mysqli_fetch_array($data1)){
                 ?>
                 <form action="updatepesan.php" method="post">		
-                    <table>
-                        <tr>
-                            <td>Pesanan</td>
-                            <td>
-                                <input type="hidden" name="id_order" value="<?php echo $data['id_order'] ?>">
-                                <input type="text" name="nama" value="<?php echo $data['nama'] ?>">
-                            </td>					
-                        </tr>	
-                        <tr>
-                            <td>ID Pesanan</td>
-                            <td><input type="text" name="id" value="<?php echo $data['id'] ?>"></td>					
-                        </tr>	
-                        <tr>
-                            <td>Quantity</td>
-                            <td><input type="text" name="qt" value="<?php echo $data['qt'] ?>"></td>					
-                        </tr>	
-                        <tr>
-                            <td></td>
-                            <td><input type="submit" name="tubesrpl" value="Simpan"> <input type="reset" value="Hapus"></td>					
-                        </tr>				
+                    <table id="myTable" class="table table-striped table-bordered table-responsive table-hover">
+                    <thead> 
+                    <tr>
+                            <th>Pesanan</th>
+                            <th>ID Pesanan</th>
+                            <th>Quantity</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>   
+                    <tr>
+                        <th>
+                            <input type="hidden" name="id_order" value="<?php echo $data['id_order'] ?>">
+                            <input type="text" name="nama" value="<?php echo $data['nama'] ?>">
+                        </th>					
+                        <th>
+                            <input type="text" name="id" value="<?php echo $data['id'] ?>">
+                        </th>						
+                        <th>
+                            <input type="text" name="qt" value="<?php echo $data['qt'] ?>">
+                        </th>						
+                        <th>
+                            <input type="submit" name="tubesrpl" value="Simpan" class="d-inline btn btn-primary m-1 col-md-5    "> 
+                            <input type="reset" value="Hapus" class="d-inline btn btn-primary m-1 col-md-5">
+                        </th>					
+                    </tr>
+                    </tbody>				
                     </table>
                 </form>
                 <?php 
                 } 
                 ?>
-                            </section>
+            </section>
             <!-- Table End -->
-           <!-- Footer Start -->
-           <div class="container-fluid pt-4 px-4">
-                <div class="bg-light rounded-top p-4">
-                    <div class="row ">
-                        <p class="h4 text-center">UniDine</p>
-                    </div>
 
-                </div>
-            </div>
-
-            <!-- Footer End -->
-        </div>
-        <!-- Content End -->
-
-
-        <!-- Back to Top -->
-        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
-    </div>
-
-    <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/chart/chart.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="lib/tempusdominus/js/moment.min.js"></script>
-    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
-    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
-    <script src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#myTable').dataTable();
-        });
-    </script>
-    <!-- Template Javascript -->
-    <script src="js/main.js"></script>
-</body>
-
-</html>           <!-- Footer Start -->
+            <!-- Footer Start -->
             <div class="container-fluid pt-4 px-4">
                 <div class="bg-light rounded-top p-4">
                     <div class="row ">
@@ -208,4 +178,3 @@
 </body>
 
 </html>
-

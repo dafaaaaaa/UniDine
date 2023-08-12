@@ -1,22 +1,9 @@
-<?php
-session_start(); // Start a session
-
-if (!isset($_SESSION['username'])) {
-    header("Location: login.php");
-    exit(); // Stop further execution of the page
-}
-
-include 'koneksi.php';
-// get data dari table menu 
-$query = mysqli_query($koneksi, "SELECT * FROM tbl_menu");
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
-    <title>Menu</title>
+    <title>Edit Pesanan</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -60,26 +47,17 @@ $query = mysqli_query($koneksi, "SELECT * FROM tbl_menu");
         <div class="sidebar pe-4 pb-3">
             <nav class="navbar bg-light navbar-light">
                 <div class="navbar-nav w-100 ">
-                    <?php if ($_SESSION['role'] == 1 || $_SESSION['role'] == 3) { ?>
-                        <a href="index.php" class="nav-item nav-link"><i class="fa fa-bell me-2"></i>Daftar Pesanan</a>
-                    <?php } ?>
-                    <?php if ($_SESSION['role'] == 1 || $_SESSION['role'] == 3) { ?>
-                        <a href="KetersediaanMeja.php" class="nav-item nav-link "><i class="fa fa-envelope me-2"></i>Ketersedian Meja</a>
-                    <?php } ?>
-                    <?php if ($_SESSION['role'] == 1) { ?>
-                        <a href="Pesanan.php" class="nav-item nav-link"><i class="fa fa-file-alt me-2"></i>Pesanan</a>
-                        <div class="nav-item dropdown active">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-keyboard me-2"></i>Pengelolaan</a>
-                            <div class="dropdown-menu bg-transparent border-0 ">
-                                <a href="Menu.php" class="dropdown-item active">Menu</a>
-                                <a href="Meja.php" class="dropdown-item">Meja</a>
-                            </div>
+                    <a href="index.php" class="nav-item nav-link active"><i class="fa fa-bell me-2"></i>Daftar Pesanan</a>
+                    <a href="KetersediaanMeja.php" class="nav-item nav-link "><i class="fa fa-envelope me-2"></i>Ketersedian Meja</a>
+                    <a href="Pesanan.php" class="nav-item nav-link"><i class="fa fa-file-alt me-2"></i>Pesanan</a>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-keyboard me-2"></i>Pengelolaan</a>
+                        <div class="dropdown-menu bg-transparent border-0">
+                            <a href="Menu.php" class="dropdown-item">Menu</a>
+                            <a href="Meja.php" class="dropdown-item">Meja</a>
                         </div>
-                    <?php } ?>
-                    <?php if ($_SESSION['role'] == 2) { ?>
-                        <a href="Menu.php" class="nav-item nav-link"><i class="fa fa-file-alt me-2"></i>Pesanan</a>
-                    <?php } ?>
-                    <a href="Logout.php" class="nav-item nav-link">Log Out</a>
+                    </div>
+                    <a href="Login.php" class="nav-item nav-link">Log Out</a>
                 </div>
             </nav>
         </div>
@@ -108,62 +86,81 @@ $query = mysqli_query($koneksi, "SELECT * FROM tbl_menu");
             <div class="container-fluid mb-4 pt-4 px-4 ">
                 <div class="bg-light rounded-top p-4">
                     <div class="row">
-                        <p class="h4"> UniDine - Daftar Menu</p>
+                        <p class="h4"> UniDine - Edit Pesanan</p>
                     </div>
                 </div>
             </div>
-            <?php if ($_SESSION['role'] == 1) { ?>
-                <a href="TambahMenu.php"><button type="button" class="btn btn-primary mx-4 mb-3 col-md-2">Tambah Menu</button></a>
-            <?php } ?>
-            <!-- Table Start -->
-            <section class="mx-4">
-                <table id="myTable" class="table table-striped table-bordered table-responsive table-hover">
-                    <thead>
-                        <tr>
-                            <th>ID Menu</th>
-                            <th>Nama Menu</th>
-                            <th>Deskripsi</th>
-                            <th>Kategori</th>
-                            <th>Harga</th>
-                            <th>Status</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php while ($h = mysqli_fetch_array($query)) {
-                        ?>
-                            <tr>
-                                <td><?= $h['id']; ?></td>
-                                <td><?= $h['nama']; ?></td>
-                                <td><?= $h['deks']; ?></td>
-                                <td><?= $h['kategori']; ?></td>
-                                <td>Rp. <?= $h['harga']; ?></td>
-                                <td><?= $h['status']; ?></td>
-                                <td>
-                                    <?php if ($_SESSION['role'] == 1) { ?>
-                                        <a href="HapusMenu.php?id=<?= $h['id']; ?>" class="d-inline btn btn-primary m-1 col-md-5 ">Hapus</a>
-                                        <a href="EditMenu.php?id=<?= $h['id']; ?>"class="d-inline btn btn-primary m-1 col-md-5 ">Edit</a>
-                                    <?php } ?>
-                                    <?php if ($_SESSION['role'] == 2) { ?>
-                                        <a href="MenuTersedia.php?id=<?= $h['id']; ?>" class="d-inline btn btn-primary m-1 col-md-5 ">Tersedia</a>
-                                        <a href="MenuTidakTersedia.php?id=<?= $h['id']; ?>" class="d-inline btn btn-primary m-1 col-md-5 ">Tidak Tersedia</a>
-                                    <?php } ?>
-                                </td>
-                            </tr>
-                        <?php } ?>
-                    </tbody>
-                </table>
+
+             <!-- Table Start -->
+             <section class="mx-4">
+                <?php 
+                include "koneksi.php";
+                $id = $_GET['id'];
+                $data1 = mysqli_query($koneksi, "SELECT * FROM tbl_menu
+                WHERE id=$id ");
+                $nomor = 1;
+                while($data = mysqli_fetch_array($data1)){
+                ?>
+                <form action="UpdateMenu.php" method="post" enctype="multipart/form-data">>		
+                    <table>
+                    <tbody>   
+                    <tr>
+                    <th>Nama Menu</th>
+                        <th>: 
+                            <input type="hidden" name="id_menu" value="<?php echo $data['id'] ?>">
+                            <input type="text" name="nama" value="<?php echo $data['nama'] ?>">
+                        </th>
+                    </tr>
+                    <tr>	
+                    <th>Deskripsi Menu</th>				
+                        <th>: 
+                            <input type="text" name="deks" value="<?php echo $data['deks'] ?>">
+                        </th>
+                    </tr>
+                    <tr>
+                    <th>Kategori</th>						
+                        <th>: 
+                            <input type="text" name="kategori" value="<?php echo $data['kategori'] ?>">
+                        </th>
+                    </tr>
+                    <tr>
+                    <th>Harga</th>
+                        <th>: 
+                            <input type="text" name="harga" value="<?php echo $data['harga'] ?>">
+                        </th>
+                    </tr>
+                    <tr>
+                    <th>Gambar</th>
+                        <th>: 
+                            <input type="file" name="pic" value="<?php echo $data['pic'] ?>">
+                        </th>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <th>
+                            <input type="submit" name="tubesrpl" value="Simpan" class="d-inline btn btn-primary m-1 col-md-5"> 
+                            <input type="reset" value="Hapus" class="d-inline btn btn-primary m-1 col-md-5">
+                        </th>					
+                    </tr>
+                    </tbody>				
+                    </table>
+                </form>
+                <?php 
+                } 
+                ?>
             </section>
             <!-- Table End -->
+
             <!-- Footer Start -->
             <div class="container-fluid pt-4 px-4">
                 <div class="bg-light rounded-top p-4">
                     <div class="row ">
                         <p class="h4 text-center">UniDine</p>
                     </div>
-                </div>
 
+                </div>
             </div>
+
             <!-- Footer End -->
         </div>
         <!-- Content End -->
