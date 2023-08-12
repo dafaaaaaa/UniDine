@@ -13,10 +13,10 @@ if (isset($_GET['id'])) {
 
   // Query untuk mengambil data pesanan berdasarkan ID
   $query = "SELECT p.id, p.no_meja, p.jumlah_tamu, p.status, SUM(m.harga * dp.qt) AS totalharga 
-    FROM pesanan p 
-    INNER JOIN tbl_temp_pesanan dp ON p.id = dp.id_pesanan 
-    INNER JOIN tbl_menu m ON dp.id_order = m.id 
-    WHERE p.id = '$pesanan_id'";
+  FROM pesanan p 
+  INNER JOIN tbl_temp_pesanan dp ON p.id = dp.id_pesanan 
+  INNER JOIN tbl_menu m ON dp.id_menu = m.id 
+  WHERE p.id = '$pesanan_id'";
 
   $result = mysqli_query($koneksi, $query);
 
@@ -66,13 +66,13 @@ if (isset($_GET['id'])) {
 
     <form action="proses_bayar.php" method="post">
       <input type="hidden" name="pesanan_id" value="<?php echo $pesanan_id; ?>">
-      
+
       <label for="uang_bayar">Uang Bayar:</label>
       <input type="number" id="uang_bayar" name="uang_bayar" step="0.01" required>
-      
+
       <button type="submit" name="submit">Bayar</button>
     </form>
-    
+
     <div id="changeDisplay"></div>
   </div>
 
@@ -83,14 +83,14 @@ if (isset($_GET['id'])) {
       const totalHarga = <?php echo $row['totalharga']; ?>;
       const uangBayar = parseFloat(document.getElementById('uang_bayar').value);
       const change = uangBayar - totalHarga;
-      
+
       if (change >= 0) {
         document.getElementById('changeDisplay').innerText = `Kembalian: Rp ${change.toFixed(2)}`;
       } else {
         document.getElementById('changeDisplay').innerText = 'Uang bayar kurang';
       }
     }
-    
+
     // Attach the function to the input field's "input" event
     document.getElementById('uang_bayar').addEventListener('input', calculateChange);
   </script>
