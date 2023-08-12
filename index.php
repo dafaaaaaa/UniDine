@@ -10,11 +10,12 @@ if ($_SESSION['role'] == 2) {
 }
 
 include 'koneksi.php';
-// Query untuk mengambil data pesanan dari tabel tbl_pesanan
+$currentDateTime = date("Y-m-d");
+
 $query = "SELECT p.id, p.no_meja, p.jumlah_tamu, p.status, p.total AS totalharga 
 FROM pesanan p 
-INNER JOIN tbl_temp_pesanan dp ON p.id = dp.id_pesanan 
-INNER JOIN tbl_menu m ON dp.id_order = m.id 
+LEFT JOIN tbl_temp_pesanan dp ON p.id = dp.id_pesanan 
+WHERE DATE(p.tanggal_pesan) = '$currentDateTime' 
 GROUP BY p.id";
 $result = mysqli_query($koneksi, $query);
 ?>
@@ -134,35 +135,35 @@ $result = mysqli_query($koneksi, $query);
                         </tr>
                     </thead>
                     <tbody>
-                        <?php
-                        while ($row = mysqli_fetch_assoc($result)) {
-                            echo "<tr>";
-                            echo "<td>";
-                            // Query untuk mengambil menu yang dipilih dalam pesanan
-                            $menu_query = "SELECT m.nama, dp.qt FROM tbl_temp_pesanan dp INNER JOIN tbl_menu m ON dp.id_menu = m.id WHERE dp.id_pesanan = '{$row['id']}'";
-                            $menu_result = mysqli_query($koneksi, $menu_query);
-                            while ($menu = mysqli_fetch_assoc($menu_result)) {
-                                echo "{$menu['nama']} ({$menu['qt']})<br>";
-                            }
-                            $id = $row['id'];
-                            echo "</td>";
-                            echo "<td>{$row['no_meja']}</td>";
-                            echo "<td>{$row['jumlah_tamu']}</td>";
-                            echo "<td>{$row['status']}</td>";
-                            echo "<td>{$row['totalharga']}</td>";
-                            echo "<td>";
+                    <?php
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo "<tr>";
+                        echo "<td>";
 
-                            if ($_SESSION['role'] == 3) {
-                                echo "<a href='Bayar.php?id={$id}'>Bayar</a></br>";
-                            }
-
-                            echo "<a href='BatalkanPesanan.php?id={$id}'>Batalkan Pesanan</a></br>";
-                            echo "<a href='EditPesanan.php?id={$id}'>Edit Pesanan</a></br>";
-                            echo "</td>";
-
-                            echo "</tr>";
+                        // Query untuk mengambil menu yang dipilih dalam pesanan
+                        $menu_query = "SELECT m.nama, dp.qt FROM tbl_temp_pesanan dp INNER JOIN tbl_menu m ON dp.id_menu = m.id WHERE dp.id_pesanan = '{$row['id']}'";
+                        $menu_result = mysqli_query($koneksi, $menu_query);
+                        while ($menu = mysqli_fetch_assoc($menu_result)) {
+                            echo "{$menu['nama']} ({$menu['qt']})<br>";
                         }
-                        ?>
+                        $id = $row['id'];
+                        echo "</td>";
+                        echo "<td>{$row['no_meja']}</td>";
+                        echo "<td>{$row['jumlah_tamu']}</td>";
+                        echo "<td>{$row['status']}</td>";
+                        echo "<td>{$row['totalharga']}</td>";
+                        echo "<td>";
+
+                        if ($_SESSION['role'] == 3) {
+                            echo "<a href='Bayar.php?id={$id}'>Bayar</a></br>";
+                        }
+
+                        echo "<a href='BatalkanPesanan.php?id={$id}'>Batalkan Pesanan</a></br>";
+                        echo "<a href='EditPesanan.php?id={$id}'>Edit Pesanan</a></br>";
+                        echo "</td>";
+                        echo "</tr>";
+                    }
+                    ?>
                     </tbody>
                 </table>
                 <a href="#"><button type="button" class="btn btn-primary m-2">Print</button></a>
