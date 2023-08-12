@@ -12,7 +12,7 @@ if (isset($_GET['id'])) {
   $pesanan_id = $_GET['id'];
 
   // Query untuk mengambil data pesanan berdasarkan ID
-  $query = "SELECT p.id, p.no_meja, p.jumlah_tamu, p.status, SUM(m.harga * dp.qt) AS totalharga 
+  $query = "SELECT p.id, p.no_meja, p.jumlah_tamu, p.status, p.total AS totalharga 
   FROM pesanan p 
   INNER JOIN tbl_temp_pesanan dp ON p.id = dp.id_pesanan 
   INNER JOIN tbl_menu m ON dp.id_menu = m.id 
