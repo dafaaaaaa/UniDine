@@ -167,7 +167,6 @@ $result = mysqli_query($koneksi, $query);
                         ?>
                     </tbody>
                 </table>
-                <a href="#"><button type="button" class="btn btn-primary m-2">Print</button></a>
             </section>
             <!-- Table End -->
             <!-- Footer Start -->
