@@ -6,8 +6,8 @@
 </head>
 <body>
 	<?php
-    for($i=1; $i<=1000;$i++)
-		if ($i % 2!=0)
+    for($i=1; $i<=500;$i++)
+		if ($i % 2!=1)
 			echo "$i<br>";	
     ?>
 </body>
