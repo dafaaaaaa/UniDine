@@ -1,21 +1,21 @@
 Senin
-Penambangan Data 13.40-15.20
+Penambangan Data 13:40-15:20
 
 Selasa
-Pemrograman Basis Data 09.30-11.10
-Penerapan Teknologi Internet 13.40-16.10
+Pemrograman Basis Data 09:30-11:10
+Penerapan Teknologi Internet 13:40-16:10
 
 Rabu
-Pembelajaran Mesin 13.40-16.10
+Pembelajaran Mesin 13:40-16:10
 
 Kamis
-Kecerdasan Bisnis dan Visualisasi Data 13.40-16.10
+Kecerdasan Bisnis dan Visualisasi Data 13:40-16:10
 
 Jumat
-Rekayasa Perangkat Lunak 2 13.40-16.10
+Rekayasa Perangkat Lunak 2 13:40-16:10
 
 Sabtu
-Infrastruktur dan Teknologi Big Data 12.50-15.20
+Infrastruktur dan Teknologi Big Data 12:50-15:20
 
 Minggu
 Libur
